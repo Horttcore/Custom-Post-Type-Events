@@ -1,0 +1,245 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Custom Post Type Events v0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2013-01-11 09:55:06+0000\n"
+"Last-Translator: horttcore <me@horttcore.de>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: German\n"
+"X-Poedit-Country: GERMANY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: \n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: cpt-events.php:58
+#@ cpt-events
+msgid "Event Info"
+msgstr "Veranstaltungs Informationen"
+
+#: cpt-events.php:160
+#@ cpt-events
+msgid "Category"
+msgstr "Kategorie"
+
+#: cpt-events.php:161
+#@ cpt-events
+msgid "Event Date"
+msgstr "Veranstaltungsdatum"
+
+#: cpt-events.php:195
+#@ cpt-events
+msgid "Date"
+msgstr "Datum"
+
+#: cpt-events.php:200
+#@ cpt-events
+msgid "all-day"
+msgstr "ganztag"
+
+#: cpt-events.php:205
+#@ cpt-events
+msgid "From"
+msgstr "Von"
+
+#: cpt-events.php:210
+#@ cpt-events
+msgid "to"
+msgstr "bis"
+
+#: cpt-events.php:236
+#, php-format
+#@ cpt-events
+msgid "Event updated. <a href=\"%s\">View Event</a>"
+msgstr "Veranstaltung aktualisiert. <a href=\"%s\">Veranstaltung ansehen</a>"
+
+#: cpt-events.php:237
+#@ cpt-events
+msgid "Custom field updated."
+msgstr "Benutzerdefiniertesfeld aktualisiert."
+
+#: cpt-events.php:238
+#@ cpt-events
+msgid "Custom field deleted."
+msgstr "Benutzerdefiniertesfeld gelöscht."
+
+#: cpt-events.php:239
+#@ cpt-events
+msgid "Event updated."
+msgstr "Veranstaltung aktualisiert."
+
+#. translators: %s: date and time of the revision
+#: cpt-events.php:241
+#, php-format
+#@ cpt-events
+msgid "Event restored to revision from %s"
+msgstr "Veranstaltung von Revision %s wiederhergestellt"
+
+#: cpt-events.php:242
+#, php-format
+#@ cpt-events
+msgid "Event published. <a href=\"%s\">View Event</a>"
+msgstr "Veranstaltung veröffentlicht. <a href=\"%s\">Veranstaltung ansehen</a>"
+
+#: cpt-events.php:243
+#@ cpt-events
+msgid "Event saved."
+msgstr "Veranstaltung gespeichert."
+
+#: cpt-events.php:244
+#, php-format
+#@ cpt-events
+msgid "Event submitted. <a target=\"_blank\" href=\"%s\">Preview Event</a>"
+msgstr "Veranstaltung zur Prüfung vorgelegt. <a target=\"_blank\" href=\"%s\">Veranstaltungs Vorschau</a>"
+
+#: cpt-events.php:245
+#, php-format
+#@ cpt-events
+msgid "Event scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">Preview Event</a>"
+msgstr "Veranstaltung für <strong>%1$s</strong> geplant. <a target=\"_blank\" href=\"%2$s\">Veranstaltungs Vorschau</a>"
+
+#: cpt-events.php:245
+#@ default
+msgid "M j, Y @ G:i"
+msgstr ""
+
+#: cpt-events.php:246
+#, php-format
+#@ cpt-events
+msgid "Event draft updated. <a target=\"_blank\" href=\"%s\">Preview Event</a>"
+msgstr "Veranstaltungs Entwurf aktualisiert. <a target=\"_blank\" href=\"%s\">Veranstaltungs Vorschau</a>"
+
+#: cpt-events.php:265
+#@ cpt-events
+msgctxt "post type general name"
+msgid "Events"
+msgstr "Veranstaltungen"
+
+#: cpt-events.php:266
+#@ cpt-events
+msgctxt "post type singular name"
+msgid "Event"
+msgstr "Veranstaltung"
+
+#: cpt-events.php:267
+#@ cpt-events
+msgctxt "Event"
+msgid "Add New"
+msgstr "Erstellen"
+
+#: cpt-events.php:268
+#@ cpt-events
+msgid "Add New Event"
+msgstr "Veranstaltung erstellen"
+
+#: cpt-events.php:269
+#@ cpt-events
+msgid "Edit Event"
+msgstr "Veranstaltung bearbeiten"
+
+#: cpt-events.php:270
+#@ cpt-events
+msgid "New Event"
+msgstr "Neue Veranstaltung"
+
+#: cpt-events.php:271
+#@ cpt-events
+msgid "View Event"
+msgstr "Veranstaltung ansehen"
+
+#: cpt-events.php:272
+#@ cpt-events
+msgid "Search Event"
+msgstr "Veranstaltung suchen"
+
+#: cpt-events.php:273
+#@ cpt-events
+msgid "No Events found"
+msgstr "keine Veranstaltung gefunden"
+
+#: cpt-events.php:274
+#@ cpt-events
+msgid "No Events found in Trash"
+msgstr "Keine Veranstaltung im Papierkorb"
+
+#: cpt-events.php:276
+#@ cpt-events
+msgid "Events"
+msgstr "Veranstaltungen"
+
+#: cpt-events.php:286
+#@ cpt-events
+msgctxt "Post Type Slug"
+msgid "event"
+msgstr "veranstaltung"
+
+#: cpt-events.php:310
+#@ cpt-events
+msgctxt "taxonomy general name"
+msgid "Categories"
+msgstr "Kategorien"
+
+#: cpt-events.php:311
+#@ cpt-events
+msgctxt "taxonomy singular name"
+msgid "Category"
+msgstr "Kategorie"
+
+#: cpt-events.php:312
+#@ cpt-events
+msgid "Search Categories"
+msgstr "Kategorien durchsuchen"
+
+#: cpt-events.php:313
+#@ cpt-events
+msgid "All Categories"
+msgstr "Alle Kategorien"
+
+#: cpt-events.php:314
+#@ cpt-events
+msgid "Parent Category"
+msgstr "Übergeordnete Kategorie"
+
+#: cpt-events.php:315
+#@ cpt-events
+msgid "Parent Category:"
+msgstr "Übergeordnete Kategorie:"
+
+#: cpt-events.php:316
+#@ cpt-events
+msgid "Edit Category"
+msgstr "Kategorie bearbeiten"
+
+#: cpt-events.php:317
+#@ cpt-events
+msgid "Update Category"
+msgstr "Kategorie aktualisieren"
+
+#: cpt-events.php:318
+#@ cpt-events
+msgid "Add New Category"
+msgstr "Kategorie erstellen"
+
+#: cpt-events.php:319
+#@ cpt-events
+msgid "New Category Name"
+msgstr "Neuer Kategorie Name"
+
+#: cpt-events.php:320
+#@ cpt-events
+msgid "Categories"
+msgstr "Kategorien"
+
+#: cpt-events.php:328
+#@ cpt-events
+msgctxt "Event Category Slug"
+msgid "event-category"
+msgstr "veranstaltungs-kategorie"
+
