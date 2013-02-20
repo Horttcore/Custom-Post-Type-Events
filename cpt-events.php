@@ -260,7 +260,8 @@ class Custom_Post_Type_Events
 	 **/
 	public function pre_get_posts( $query )
 	{
-		if ( is_archive( 'event' ) && $query->is_main_query() ) :
+		if ( is_archive( 'event' ) && $query->is_main_query() && !is_admin() ) :
+			$query->query_vars['order'] = 'asc';
 			$query->query_vars['orderby'] = 'meta_key';
 			$query->query_vars['meta_key'] = '_event-start';
 			$query->query_vars['meta_value'] = time();
@@ -306,7 +307,7 @@ class Custom_Post_Type_Events
 			'has_archive' => TRUE,
 			'hierarchical' => FALSE,
 			'menu_position' => NULL,
-			'supports' => array('title', 'editor', 'thumbnail', 'page-attributes')
+			'supports' => array('title', 'editor', 'thumbnail' )
 		);
 
 		register_post_type( 'event', $args);
