@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Custom Post Type Events
-Plugin URI: http://horttcore.de.de
+Plugin URI: http://horttcore.de
 Description: Custom Post Type Events
-Version: 0.1
+Version: 0.1.1
 Author: Ralf Hortt
-Author URI: http://horttcorte.de
+Author URI: http://horttcore.de
 License: GPL2
 */
 
@@ -39,6 +39,7 @@ class Custom_Post_Type_Events
 		add_filter( 'manage_event_posts_columns' , array( $this, 'manage_event_posts_columns' ) );
 		add_action( 'manage_event_posts_custom_column' , array($this,'manage_event_posts_custom_column'), 10, 2 );
 		add_filter( 'post_updated_messages', array( $this, 'post_updated_messages' ) );
+		add_filter( 'pre_get_posts', array( $this, 'pre_get_posts' ) );
 		add_action( 'save_post', array( $this, 'save_post' ) );
 
 		load_plugin_textdomain( 'cpt-events', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/'  );
@@ -55,7 +56,7 @@ class Custom_Post_Type_Events
 	 **/
 	public function add_meta_boxes()
 	{
-		add_meta_box( 'event-info', __( 'Event Info', 'cpt-events'  ), array( $this, 'metabox_event_info' ), 'event' );
+		add_meta_box( 'event-info', __( 'Event Info', 'cpt-events' ), array( $this, 'metabox_event_info' ), 'event' );
 	}
 
 
@@ -249,6 +250,23 @@ class Custom_Post_Type_Events
 		return $messages;
 	}
 
+
+
+	/**
+	 * Reorder event archive
+	 *
+	 * @return void
+	 * @author Ralf Hortt
+	 **/
+	public function pre_get_posts( $query )
+	{
+		if ( is_archive( 'event' ) && $query->is_main_query() ) :
+			$query->query_vars['orderby'] = 'meta_key';
+			$query->query_vars['meta_key'] = '_event-start';
+			$query->query_vars['meta_value'] = time();
+			$query->query_vars['meta_compare'] = '>=';
+		endif;
+	}
 
 
 	/**
