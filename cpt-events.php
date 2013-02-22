@@ -3,7 +3,7 @@
 Plugin Name: Custom Post Type Events
 Plugin URI: http://horttcore.de
 Description: Custom Post Type Events
-Version: 0.1.1
+Version: 0.2
 Author: Ralf Hortt
 Author URI: http://horttcore.de
 License: GPL2
@@ -71,6 +71,10 @@ class Custom_Post_Type_Events
 	public function admin_enqueue_scripts()
 	{
 		wp_register_script( 'cpt-events-admin', plugins_url( dirname( plugin_basename( __FILE__ ) ) . '/javascript/cpt-events-admin.js' ), array( 'jquery', 'jquery-ui-core', 'jquery-ui-datepicker' ), FALSE, TRUE );
+		wp_localize_script( 'cpt-events-admin', 'cptEvents', array(
+			'addLocation' => __( 'Add Location', 'cpt-events' ),
+			'removeLocation' => __( 'Remove Location', 'cpt-events' )
+		) );
 	}
 
 
@@ -175,47 +179,59 @@ class Custom_Post_Type_Events
 	 **/
 	public function metabox_event_info( $post )
 	{
-		$start = get_post_meta( $post->ID, '_event-start', true );
-		$end = get_post_meta( $post->ID, '_event-end', true );
-
-		$checked = ( 1 == get_post_meta( $post->ID, '_allday', true )) ? 'checked="checked"' : '';
+		$start = ( $start = get_post_meta( $post->ID, '_event-date-start', TRUE ) ) ? $start : time();
+		$end = ( $end = get_post_meta( $post->ID, '_event-date-end', TRUE ) ) ? $end : '';
+		$time_start = ( $time = get_post_meta( $post->ID, '_event-time-start', TRUE ) ) ? $time : '';
+		$time_end = ( $time = get_post_meta( $post->ID, '_event-time-end', TRUE ) ) ? $time : '';
+		$location = get_post_meta( $post->ID, '_event-location', TRUE );
 
 		$date_start = ( $start ) ? date( 'd.m.Y', $start ) : date( 'd.m.Y') ;
-		$date_end = ( $start ) ? date( 'd.m.Y', $end ) : date( 'd.m.Y') ;
-
-		$fromhour = ( $start ) ? date( 'H', $start ) : date( 'H' );
-		$frommin = ( $start ) ? date( 'i', $start ) : '00';
-
-		$tohour = ( $end ) ? date( 'H', $end ) : date( 'H' ) + 1;
-		$tomin = ( $end ) ? date( 'i', $end ) : '00';
+		$date_end = ( $end ) ? date( 'd.m.Y', $end ) : '' ;
 
 		wp_enqueue_script( 'cpt-events-admin' );
 		?>
 
-		<p>
-			<label for="date"><?php _e( 'Date', 'cpt-events'  ); ?></label>
-			<input type="text" name="date-start" id="date-start" value="<?php echo $date_start ?>" format="DD.MM.YYYY" /> - 
-			<input type="text" name="date-end" id="date-end" value="<?php echo $date_end ?>" />
+		<table class="form-table">
+			<tr>
+				<th><label for="event-date"><?php _e( 'Date', 'cpt-events'  ); ?></label></th>
+				<td>
+					<input type="text" name="event-date-start" id="event-date-start" value="<?php if ( isset( $start ) ) echo date( 'd.m.Y', $start ) ?>" /> <span <?php if ( !$date_end ) echo 'style="display: none"'  ?> class="multi-day">- <input type="text" name="event-date-end" id="event-date-end" value="<?php if ( isset( $end ) ) echo date( 'd.m.Y', $end ) ?>" /></span> <small><?php _e( 'DD.MM.YYYY', 'cpt-events' ); ?></small><br>
+					<label><input <?php if ( $end ) echo 'checked="checked"' ?> type="checkbox" id="event-multi-day"> <?php _e( 'Multi-day', 'cpt-events' ); ?></label> <label><input <?php if ($time_start || $time_end ) echo 'checked="checked"' ?> type="checkbox" id="event-time"> <?php _e( 'Time', 'cpt-events' ); ?></label>
+				</td>
+			</tr>
+			<tr class="event-time" <?php if ( !$time_start && !$time_end ) echo 'style="display: none"' ?>>
+				<th><label for="event-from-hour"><?php _e( 'Time', 'cpt-events' ); ?></label></th>
+				<td><input type="text" name="event-from-hour" size="2" id="event-from-hour" value="<?php if ( '' != $time_start ) echo date( 'H', $time_start ) ?>" /> : <input type="text" size="2" name="event-from-minute" id="event-from-minute" value="<?php if ( '' != $time_start ) echo date( 'i', $time_start ) ?>" /> h - <input type="text" name="event-to-hour" size="2" id="event-to-hour" value="<?php if ( isset( $time_end ) ) echo date( 'H', $time_end ) ?>" /> : <input type="text" size="2" name="event-to-minute" id="event-to-minute" value="<?php if ( isset( $time_end ) ) echo date( 'i', $time_end ) ?>" /> h</td>
+			</tr>
 
-			<input <?php echo $checked ?> type="checkbox" name="all-day" id="all-day" value="true" />
-			<label for="all-day"><?php _e( 'all-day', 'cpt-events'  ); ?></label>
-		</p>
+			<?php $style = ( is_array( $location ) && !empty( $location ) ) ? '' : 'style="display: none"' ?>
 
-		<div class="date-time">
-			<div class="alignleft">
-				<label for="from-hour"><?php _e( 'From', 'cpt-events'  ); ?></label>
-				<input type="text" name="from-hour" size="2" id="from-hour" value="<?php echo $fromhour ?>" /> : <input type="text" size="2" name="from-minute" id="from-minute" value="<?php echo $frommin ?>" /> h<br />
-			</div>
+			<?php if ( post_type_supports( 'event', 'location' ) ) : ?>
 
-			<div class="alignleft">
-				<label for="to-hour"><?php _e( 'to', 'cpt-events'  ); ?></label>
-				<input type="text" name="to-hour" size="2" id="to-hour" value="<?php echo $tohour ?>" /> : <input type="text" size="2" name="to-minute" id="to-minute" value="<?php echo $tomin ?>" /> h
-			</div>
-		</div>
+				<tr class="location" <?php echo $style ?>>
+					<th><label for="event-street"><?php _e( 'Street', 'cpt-events' ); ?></label> / <label for="event-street-number"><?php _e( 'Nr.', 'cpt-events' ); ?></label></th>
+					<td><input type="text" name="event-street" id="event-street" value="<?php if ( isset( $location['street'] ) ) echo $location['street'] ?>"><input type="text" name="event-street-number" id="event-street-number" value="<?php if ( isset( $location['street-number'] ) ) echo $location['street-number'] ?>"></td>
+				</tr>
 
-		<div class="clear"></div>
+				<tr class="location" <?php echo $style ?>>
+					<th><label for="event-zip"><?php _e( 'ZIP', 'cpt-events' ); ?></label> / <label for="event-city"><?php _e( 'City', 'cpt-events' ); ?></label></th>
+					<td><input type="text" name="event-zip" id="event-zip" value="<?php if ( isset( $location['zip'] ) ) echo $location['zip'] ?>"><input type="text" name="event-city" id="event-city" value="<?php if ( isset( $location['city'] ) ) echo $location['city'] ?>"></td>
+				</tr>
+
+				<tr class="location" <?php echo $style ?>>
+					<th><label for="event-country"><?php _e( 'Country', 'cpt-events'  ); ?></label></th>
+					<td><input type="text" name="event-country" id="event-country" value="<?php if ( isset( $location['country'] ) ) echo $location['country'] ?>" /></td>
+				</tr>
+
+			<?php endif; ?>
+
+		</table>
+
+		<?php if ( post_type_supports( 'event', 'location' ) ) : ?>
+			<a href="#" data-status="<?php echo ( is_array( $location ) && !empty( $location ) ) ? 'opened' : 'closed' ?>" class="toggle-location button"><?php if ( is_array( $location ) && !empty( $location ) ) _e( 'Remove Location', 'cpt-events' ); else _e( 'Add Location', 'cpt-events' ); ?></a>
+		<?php endif; ?>
+
 		<?php
-
 		wp_nonce_field( 'save-event-info', 'event-info-nonce' );
 
 	}
@@ -311,6 +327,8 @@ class Custom_Post_Type_Events
 		);
 
 		register_post_type( 'event', $args);
+
+		add_post_type_support( 'event', 'location' );
 	}
 
 
@@ -360,30 +378,72 @@ class Custom_Post_Type_Events
 	 **/
 	public function save_post( $post_id )
 	{
-
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
 			return;
 
 		if ( !isset( $_POST['event-info-nonce'] ) || !wp_verify_nonce( $_POST['event-info-nonce'], 'save-event-info' ) )
 			return;
 
-		// Date
-		if ( $_POST['date-start'] ) :
+		// Delete unused stuff
+		if ( '' == $_POST['event-date-start'] ) :
+			delete_post_meta( $post_id, '_event-date-start' );
+			delete_post_meta( $post_id, '_event-date-end' );
+			delete_post_meta( $post_id, '_event-time-start' );
+			delete_post_meta( $post_id, '_event-time-end' );
+			return;
+		endif;
 
-			$date_start = explode( '.', $_POST['date-start'] );
-			$date_end = explode( '.', $_POST['date-end'] );
-			$allday = ( $_POST['all-day'] ) ? true : false;
+		// Event date
+		$date_start = explode( '.', $_POST['event-date-start'] );
+		$date_start = mktime( 0, 0, 0, $date_start[1], $date_start[0], $date_start[2] );
+		update_post_meta( $post_id, '_event-date-start', $date_start );
 
-			update_post_meta( $post_id, '_allday', $allday );
-			update_post_meta( $post_id, '_event-start', mktime( $_POST['from-hour'], $_POST['from-minute'], 0, $date_start[1], $date_start[0], $date_start[2] ) );
-			update_post_meta( $post_id, '_event-end', mktime( $_POST['to-hour'], $_POST['to-minute'], 0, $date_end[1], $date_end[0], $date_end[2] ) );
-
+		if ( $_POST['event-date-end'] ) :
+			$date_end = ( $_POST['event-date-end'] ) ? explode( '.', $_POST['event-date-end'] ) : $date_start;
+			$date_end = mktime( 23, 59, 0, $date_end[1], $date_end[0], $date_end[2] );
+			update_post_meta( $post_id, '_event-date-end', $date_end );
 		else :
+			delete_post_meta( $post_id, '_event-date-end' );
+		endif;
 
-			delete_post_meta( $post_id, '_event-start' );
-			delete_post_meta( $post_id, '_event-end' );
+		// Event time
+		if ( $_POST['event-from-hour'] && $_POST['event-from-minute'] ) :
+			$date_start = explode( '.', $_POST['event-date-start'] );
+			$date_start = mktime( $_POST['event-from-hour'], $_POST['event-from-minute'], 0, $date_start[1], $date_start[0], $date_start[2] );
+			update_post_meta( $post_id, '_event-time-start', $date_start );
+		else :
+			delete_post_meta( $post_id, '_event-time-start' );
+		endif;
+
+		if ( $_POST['event-to-hour'] && $_POST['event-to-minute'] ) :
+			$date_end = ( $_POST['event-date-end'] ) ? explode( '.', $_POST['event-date-end'] ) : $date_start;
+			$date_end = mktime( $_POST['event-to-hour'], $_POST['event-to-minute'], 0, $date_end[1], $date_end[0], $date_end[2] );
+			update_post_meta( $post_id, '_event-time-end', $date_end );
+		else :
+			delete_post_meta( $post_id, '_event-time-end' );
+		endif;
+
+		// Location
+		if ( post_type_supports( 'event', 'location' ) ) :
+
+			if ( $_POST['event-city'] ) :
+
+				update_post_meta( $post_id, '_event-location', array(
+					'street' => $_POST['event-street'],
+					'street-number' => $_POST['event-street-number'],
+					'zip' => $_POST['event-zip'],
+					'city' => $_POST['event-city'],
+					'country' => $_POST['event-country']
+				) );
+
+			else :
+
+				delete_post_meta( $post_id, '_event-location' );
+
+			endif;
 
 		endif;
+
 	}
 
 

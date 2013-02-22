@@ -6,3 +6,7 @@
 .date-time > div:first-child + div {
 	margin: 0 20px 0 0;
 }
+
+#event-time {
+	margin: 0 0 0 5px;
+}
