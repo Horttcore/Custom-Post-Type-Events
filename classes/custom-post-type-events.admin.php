@@ -77,10 +77,6 @@ final class Custom_Post_Type_Events_Admin
 	{
 
 		wp_register_script( 'custom-post-type-events-admin', plugins_url( dirname( plugin_basename( __FILE__ ) ) . '/../scripts/custom-post-type-events.admin.js' ), array( 'jquery', 'jquery-ui-core', 'jquery-ui-datepicker' ), FALSE, TRUE );
-		wp_localize_script( 'custom-post-type-events-admin', 'cptEvents', array(
-			'addLocation' => __( 'Add Location', 'custom-post-type-events' ),
-			'removeLocation' => __( 'Remove Location', 'custom-post-type-events' )
-		) );
 
 	} // END admin_enqueue_scripts
 
@@ -257,10 +253,12 @@ final class Custom_Post_Type_Events_Admin
 		wp_enqueue_script( 'custom-post-type-events-admin' );
 
 		$info = get_post_meta( $post->ID, '_event-info', TRUE );
+		$multiday = ( isset( $info['multi-day'] ) ) ? $info['multi-day'] : FALSE;
+		$time = ( isset( $info['time'] ) ) ? $info['time'] : FALSE;
 		$date_start = ( $timestamp = get_post_meta( $post->ID, '_event-date-start', TRUE ) ) ? absint( $timestamp ) : time();
 		$date_end = ( $timestamp = get_post_meta( $post->ID, '_event-date-end', TRUE ) ) ? absint( $timestamp ) : time();
-		$from_hour = ( $timestamp = get_post_meta( $post->ID, '_event-time-start', TRUE ) ) ? absint( $timestamp ) : time();
-		$to_hour = ( $timestamp = get_post_meta( $post->ID, '_event-time-end', TRUE ) ) ? absint( $timestamp ) : time() + 3600;
+		$from_time = ( $timestamp = get_post_meta( $post->ID, '_event-time-start', TRUE ) ) ? absint( $timestamp ) : time();
+		$to_time = ( $timestamp = get_post_meta( $post->ID, '_event-time-end', TRUE ) ) ? absint( $timestamp ) : time() + 3600;
 		?>
 
 		<table class="form-table">
@@ -277,15 +275,15 @@ final class Custom_Post_Type_Events_Admin
 			<tr class="event-time">
 				<th><label for="event-from-hour"><?php _e( 'Time', 'custom-post-type-events' ); ?></label></th>
 				<td>
-					<input type="text" name="event-from-hour" size="2" id="event-from-hour" value="<?php echo date_i18n( 'H', $from_hour ) ?>" /> : <input type="text" size="2" name="event-from-minute" id="event-from-minute" value="<?php echo date_i18n( 'i', $from_hour ) ?>" /> h -
-					<input type="text" name="event-to-hour" size="2" id="event-to-hour" value="<?php echo date_i18n( 'H', $to_hour ) ?>" /> : <input type="text" size="2" name="event-to-minute" id="event-to-minute" value="<?php echo date_i18n( 'i', $to_hour ) ?>" /> h
+					<input type="text" name="event-from-hour" size="2" id="event-from-hour" value="<?php echo date_i18n( 'H', $from_time ) ?>" /> : <input type="text" size="2" name="event-from-minute" id="event-from-minute" value="<?php echo date_i18n( 'i', $from_time ) ?>" /> h -
+					<input type="text" name="event-to-hour" size="2" id="event-to-hour" value="<?php echo date_i18n( 'H', $to_time ) ?>" /> : <input type="text" size="2" name="event-to-minute" id="event-to-minute" value="<?php echo date_i18n( 'i', $to_time ) ?>" /> h
 				</td>
 			</tr>
 
 			<tr>
 				<td colspan="2">
-					<label><input <?php checked( TRUE, $info['multi-day'] ) ?> type="checkbox" name="event-multi-day" id="event-multi-day"> <?php _e( 'Multi-day', 'custom-post-type-events' ); ?></label>
-					<label><input <?php checked( TRUE, $info['time'] ) ?> type="checkbox" name="event-time" id="event-time"> <?php _e( 'Time', 'custom-post-type-events' ); ?></label>
+					<label><input <?php checked( TRUE, $multiday ) ?> type="checkbox" name="event-multi-day" id="event-multi-day"> <?php _e( 'Multi-day', 'custom-post-type-events' ); ?></label>
+					<label><input <?php checked( TRUE, $time ) ?> type="checkbox" name="event-time" id="event-time"> <?php _e( 'Time', 'custom-post-type-events' ); ?></label>
 				</td>
 			</tr>
 
@@ -379,7 +377,7 @@ final class Custom_Post_Type_Events_Admin
 
 		$post             = get_post();
 		$post_type        = get_post_type( $post );
-		$post_type_object = get_post_type_object( $post_type );
+		$post_type_object = get_post_type_object( 'event' );
 
 		$messages['event'] = array(
 			0  => '', // Unused. Messages start at index 1.
@@ -400,14 +398,14 @@ final class Custom_Post_Type_Events_Admin
 			$permalink = get_permalink( $post->ID );
 
 			$view_link = sprintf( ' <a href="%s">%s</a>', esc_url( $permalink ), __( 'View event', 'custom-post-type-events' ) );
-			$messages[ $post_type ][1] .= $view_link;
-			$messages[ $post_type ][6] .= $view_link;
-			$messages[ $post_type ][9] .= $view_link;
+			$messages[ 'event' ][1] .= $view_link;
+			$messages[ 'event' ][6] .= $view_link;
+			$messages[ 'event' ][9] .= $view_link;
 
 			$preview_permalink = add_query_arg( 'preview', 'true', $permalink );
 			$preview_link = sprintf( ' <a target="_blank" href="%s">%s</a>', esc_url( $preview_permalink ), __( 'Preview event', 'custom-post-type-events' ) );
-			$messages[ $post_type ][8]  .= $preview_link;
-			$messages[ $post_type ][10] .= $preview_link;
+			$messages[ 'event' ][8]  .= $preview_link;
+			$messages[ 'event' ][10] .= $preview_link;
 
 		endif;
 
@@ -436,8 +434,8 @@ final class Custom_Post_Type_Events_Admin
 			return;
 
 		// Info
-		$multiday = ( $_POST['event-multi-day'] ) ? TRUE : FALSE;
-		$hastime = ( $_POST['event-time'] ) ? TRUE : FALSE;
+		$multiday = ( isset( $_POST['event-multi-day'] ) ) ? TRUE : FALSE;
+		$hastime = ( isset( $_POST['event-time'] ) ) ? TRUE : FALSE;
 		update_post_meta( $post_id, '_event-info', array(
 			'multi-day' => $multiday,
 			'time' => $hastime,
@@ -475,7 +473,7 @@ final class Custom_Post_Type_Events_Admin
 		endif;
 
 		if ( $_POST['event-to-hour'] && $_POST['event-to-minute'] ) :
-			$date_end = ( $_POST['event-date-end'] ) ? explode( '.', $_POST['event-date-end'] ) : $date_start;
+			$date_end = ( $_POST['event-date-end'] ) ? explode( '.', $_POST['event-date-end'] ) : explode( '.', $_POST['event-date-start'] );
 			$date_end = mktime( $_POST['event-to-hour'], $_POST['event-to-minute'], 0, $date_end[1], $date_end[0], $date_end[2] );
 			update_post_meta( $post_id, '_event-time-end', $date_end );
 		else :

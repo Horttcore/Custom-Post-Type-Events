@@ -60,7 +60,7 @@ final class Custom_Post_Type_Events
 			'event-day',
 	    );
 
-	    return array_merge( $theme_vars, $vars );
+	    return array_merge( $add, $vars );
 
 	} // END query_vars
 
@@ -77,7 +77,7 @@ final class Custom_Post_Type_Events
 	public function load_plugin_textdomain()
 	{
 
-		load_plugin_textdomain( 'custom-post-type-events', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/'  );
+		load_plugin_textdomain( 'custom-post-type-events', false, dirname( plugin_basename( __FILE__ ) ) . '/../languages/'  );
 
 	} // END load_plugin_textdomain
 
@@ -217,17 +217,17 @@ final class Custom_Post_Type_Events
 		register_taxonomy( 'event-category', array('event'), array(
 			'hierarchical' => TRUE,
 			'labels' => array(
-				'name' => _x( 'Categories', 'taxonomy general name', 'custom-post-type-events' ),
-				'singular_name' => _x( 'Category', 'taxonomy singular name', 'custom-post-type-events' ),
-				'search_items' =>  __( 'Search Categories', 'custom-post-type-events' ),
-				'all_items' => __( 'All Categories', 'custom-post-type-events' ),
-				'parent_item' => __( 'Parent Category', 'custom-post-type-events' ),
-				'parent_item_colon' => __( 'Parent Category:', 'custom-post-type-events' ),
-				'edit_item' => __( 'Edit Category', 'custom-post-type-events' ),
-				'update_item' => __( 'Update Category', 'custom-post-type-events' ),
-				'add_new_item' => __( 'Add New Category', 'custom-post-type-events' ),
-				'new_item_name' => __( 'New Category Name', 'custom-post-type-events' ),
-				'menu_name' => __( 'Categories', 'custom-post-type-events' ),
+				'name' => _x( 'Event Categories', 'taxonomy general name', 'custom-post-type-events' ),
+				'singular_name' => _x( 'Event Category', 'taxonomy singular name', 'custom-post-type-events' ),
+				'search_items' =>  __( 'Search Event Categories', 'custom-post-type-events' ),
+				'all_items' => __( 'All Event Categories', 'custom-post-type-events' ),
+				'parent_item' => __( 'Parent Event Category', 'custom-post-type-events' ),
+				'parent_item_colon' => __( 'Parent Event Category:', 'custom-post-type-events' ),
+				'edit_item' => __( 'Edit Event Category', 'custom-post-type-events' ),
+				'update_item' => __( 'Update Event Category', 'custom-post-type-events' ),
+				'add_new_item' => __( 'Add New Event Category', 'custom-post-type-events' ),
+				'new_item_name' => __( 'New Event Category Name', 'custom-post-type-events' ),
+				'menu_name' => __( 'Event Categories', 'custom-post-type-events' ),
 			),
 			'show_ui' => TRUE,
 			'query_var' => TRUE,

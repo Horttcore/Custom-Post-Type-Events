@@ -1,6 +1,6 @@
 .date-time > div:first-child {
 	margin: 0 70px 0 0;
-	padding: 0 0 0 4px;
+	padding: 0 0 0 4px
 }
 
 .date-time > div:first-child + div {
