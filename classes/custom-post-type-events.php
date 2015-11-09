@@ -241,7 +241,10 @@ final class Custom_Post_Type_Events
 			),
 			'show_ui' => TRUE,
 			'query_var' => TRUE,
-			'rewrite' => array( 'slug' => _x('event-category', 'Event Category Slug', 'custom-post-type-events') ),
+			'rewrite' => array(
+				'slug' => _x('event-category', 'Event Category Slug', 'custom-post-type-events'),
+				'with_front' => FALSE,
+			),
 			'show_admin_column' => TRUE,
 		));
 
