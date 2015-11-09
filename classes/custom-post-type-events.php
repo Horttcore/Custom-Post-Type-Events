@@ -32,12 +32,16 @@ final class Custom_Post_Type_Events
 	public function __construct()
 	{
 
+		add_action( 'custom-post-type-events-widget-output', 'Custom_Post_Type_Events_Widget::widget_output', 10, 3 );
+		add_action( 'custom-post-type-events-widget-loop-output', 'Custom_Post_Type_Events_Widget::widget_loop_output', 10, 3 );
 		add_action( 'init', array( $this, 'register_post_type' ) );
 		add_action( 'init', array( $this, 'register_taxonomy' ) );
-		add_filter( 'pre_get_posts', array( $this, 'pre_get_posts' ) );
+		add_action( 'pre_get_posts', array( $this, 'pre_get_posts' ) );
 		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
 		add_filter( 'query_vars', array( $this, 'query_vars' ) );
 		add_filter( 'page_rewrite_rules', array( $this, 'rewrite_rules' ) );
+		add_filter( 'widgets_init', array( $this, 'widgets_init' ) );
+
 
 	} // END __construct
 
@@ -95,65 +99,71 @@ final class Custom_Post_Type_Events
 	public function pre_get_posts( $query )
 	{
 
-		if ( ( is_post_type_archive( 'event' ) || is_tax( 'event-category' ) ) && $query->is_main_query() && !is_admin() ) :
+		if ( !$query->is_main_query() || is_admin() )
+			return;
 
+		if ( !is_post_type_archive( 'event' ) && !is_tax( 'event-categroy') )
+			return;
+
+		if ( TRUE == apply_filters( 'remove-past-events-from-loop', TRUE ) )
 			$query->set( 'order', 'ASC' );
-			$query->set( 'orderby', 'meta_value_num' );
-			$query->set( 'meta_key', '_event-date-start' );
+		else
+			$query->set( 'order', 'DESC' );
 
-			if ( get_query_var( 'event-year' ) && get_query_var( 'event-month' ) && get_query_var( 'event-day' ) ) :
+		$query->set( 'orderby', 'meta_value_num' );
+		$query->set( 'meta_key', '_event-date-start' );
 
-				$query->set( 'meta_query', array(
-					array(
-						'key' => '_event-date-start',
-						'value' => mktime( 12, 0, 0, get_query_var( 'event-month' ), get_query_var( 'event-day' ), get_query_var( 'event-year' ) ),
-						'compare' => '<=',
-						'type' => 'numeric',
-					),
-					array(
-						'key' => '_event-date-end',
-						'value' => mktime( 12, 0, 0, get_query_var( 'event-month' ), get_query_var( 'event-day' ), get_query_var( 'event-year' ) ),
-						'compare' => '>=',
-						'type' => 'numeric',
-					)
-				));
+		if ( get_query_var( 'event-year' ) && get_query_var( 'event-month' ) && get_query_var( 'event-day' ) ) :
 
-			elseif ( get_query_var( 'event-year' ) && get_query_var( 'event-month' ) ) :
+			$query->set( 'meta_query', array(
+				array(
+					'key' => '_event-date-start',
+					'value' => mktime( 12, 0, 0, get_query_var( 'event-month' ), get_query_var( 'event-day' ), get_query_var( 'event-year' ) ),
+					'compare' => '<=',
+					'type' => 'numeric',
+				),
+				array(
+					'key' => '_event-date-end',
+					'value' => mktime( 12, 0, 0, get_query_var( 'event-month' ), get_query_var( 'event-day' ), get_query_var( 'event-year' ) ),
+					'compare' => '>=',
+					'type' => 'numeric',
+				)
+			));
 
-				$query->set( 'meta_query', array(
-					array(
-						'key' => '_event-date-end',
-						'value' => array( mktime( 0, 0, 0, get_query_var( 'event-month' ), 1, get_query_var( 'event-year' ) ), mktime( 0, 0, 0, get_query_var( 'event-month' ), date( 't', mktime( 0, 0, 0, get_query_var( 'event-month' ), 1, get_query_var( 'event-year' )) ), get_query_var( 'event-year' ) ) ),
-						'compare' => 'BETWEEN',
-						'type' => 'numeric'
-					)
-				));
+		elseif ( get_query_var( 'event-year' ) && get_query_var( 'event-month' ) ) :
 
-			elseif ( get_query_var( 'event-year' ) ) :
+			$query->set( 'meta_query', array(
+				array(
+					'key' => '_event-date-end',
+					'value' => array( mktime( 0, 0, 0, get_query_var( 'event-month' ), 1, get_query_var( 'event-year' ) ), mktime( 0, 0, 0, get_query_var( 'event-month' ), date( 't', mktime( 0, 0, 0, get_query_var( 'event-month' ), 1, get_query_var( 'event-year' )) ), get_query_var( 'event-year' ) ) ),
+					'compare' => 'BETWEEN',
+					'type' => 'numeric'
+				)
+			));
 
-				$query->set( 'meta_query', array(
-					array(
-						'key' => '_event-date-end',
-						'value' => array( mktime( 0, 0, 0, 1, 1, get_query_var( 'event-year' ) ), mktime( 0, 0, 0, 12, 31, get_query_var( 'event-year' ) ) ),
-						'compare' => 'BETWEEN',
-						'type' => 'numeric'
-					),
-				));
+		elseif ( get_query_var( 'event-year' ) ) :
 
-			else :
+			$query->set( 'meta_query', array(
+				array(
+					'key' => '_event-date-end',
+					'value' => array( mktime( 0, 0, 0, 1, 1, get_query_var( 'event-year' ) ), mktime( 0, 0, 0, 12, 31, get_query_var( 'event-year' ) ) ),
+					'compare' => 'BETWEEN',
+					'type' => 'numeric'
+				),
+			));
 
-				$query->set( 'meta_query', array( array(
-						'key' => '_event-date-start',
-						'value' => time(),
-						'compare' => '>=',
-						'type' => 'NUMERIC'
-				) ) );
+		else :
 
-			endif;
+			$query->set( 'meta_query', array(
+				array(
+					'key' => '_event-date-end',
+					'value' => time(),
+					'compare' => '>=',
+					'type' => 'NUMERIC'
+				)
+			) );
 
 		endif;
-
-		return $query;
 
 	} // END pre_get_posts
 
@@ -260,6 +270,21 @@ final class Custom_Post_Type_Events
 		$rules );
 
 	} // END theme_rewrite_rules
+
+
+
+	/**
+	 * undocumented function
+	 *
+	 * @return void
+	 * @author
+	 **/
+	public function widgets_init()
+	{
+
+		register_widget( 'Custom_Post_Type_Events_Widget' );
+
+	}
 
 
 

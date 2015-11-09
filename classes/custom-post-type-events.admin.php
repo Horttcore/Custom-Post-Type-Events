@@ -180,37 +180,7 @@ final class Custom_Post_Type_Events_Admin
 
 			case 'event-date' :
 
-				$allday = ( get_post_meta( $post_id, '_allday', TRUE ) ) ? TRUE : FALSE;
-
-				$start = get_post_meta( $post_id, '_event-start', TRUE );
-
-				if ( $start ) :
-
-					$end = get_post_meta( $post_id, '_event-end', TRUE );
-
-					if ( $allday ) :
-
-						echo date_i18n( 'd.m.Y', $start );
-
-						if ( date_i18n( 'd.m.Y', $start) != date_i18n( 'd.m.Y', $end ) ) :
-
-							echo ' - ' . date_i18n( 'd.m.Y', $end );
-
-						endif;
-
-					else :
-
-						echo date_i18n( 'd.m.Y H:i', $start );
-
-						if ( date_i18n( 'd.m.Y', $start) != date_i18n( 'd.m.Y', $end ) ) :
-
-							echo ' - ' . date_i18n( 'd.m.Y', $end );
-
-						endif;
-
-					endif;
-
-				endif;
+				the_event_date( FALSE, $post_id );
 
 			break;
 
@@ -455,12 +425,13 @@ final class Custom_Post_Type_Events_Admin
 		$date_start = mktime( 0, 0, 0, $date_start[1], $date_start[0], $date_start[2] );
 		update_post_meta( $post_id, '_event-date-start', $date_start );
 
-		if ( $_POST['event-date-end'] ) :
+		if ( isset( $_POST['event-date-end'] ) && '' != $_POST['event-date-end'] ) :
 			$date_end = ( $_POST['event-date-end'] ) ? explode( '.', $_POST['event-date-end'] ) : $date_start;
 			$date_end = mktime( 23, 59, 59, $date_end[1], $date_end[0], $date_end[2] );
 			update_post_meta( $post_id, '_event-date-end', $date_end );
 		else :
-			delete_post_meta( $post_id, '_event-date-end' );
+			$date_end = mktime( 23, 59, 59, date_i18n('m', $date_start), date_i18n('d', $date_start), date_i18n('Y', $date_start) );
+			update_post_meta( $post_id, '_event-date-end', $date_end );
 		endif;
 
 		// Event time
