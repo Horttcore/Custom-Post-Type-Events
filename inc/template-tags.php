@@ -1,4 +1,29 @@
 <?php
+if ( !function_exists( 'has_event_location' ) ) :
+/**
+ * Conditional if event location is set
+ *
+ * @param int $post_id Post ID
+ * @return bool
+ * @author Ralf Hortt
+ **/
+function has_event_location( $field = FALSE, $post_id = FALSE )
+{
+
+	$post_id = ( FALSE !== $post_id ) ? $post_id : get_the_ID();
+	$location = array_filter(get_event_location());
+
+
+	if ( FALSE === $field )
+		return ( $location ) ? TRUE : FALSE;
+
+	return ( isset( $location[$field] ) ) ? TRUE : FALSE;
+
+}
+endif;
+
+
+
 if ( !function_exists( 'get_event_location' ) ) :
 /**
  * Get event location
@@ -107,6 +132,27 @@ endif;
 
 
 
+if ( !function_exists( 'has_event_date' ) ) :
+/**
+ * Conditional if event location is set
+ *
+ * @param int $post_id Post ID
+ * @return bool
+ * @author Ralf Hortt
+ **/
+function has_event_date( $post_id = FALSE )
+{
+
+	$post_id = ( FALSE !== $post_id ) ? $post_id : get_the_ID();
+	$data = get_event_info( $post_id );
+
+	return ( $data['start'] ) ? TRUE : FALSE;
+
+}
+endif;
+
+
+
 if ( !function_exists( 'get_event_date' ) ) :
 /**
  * Get event location
@@ -152,6 +198,25 @@ function the_event_date( $format = FALSE, $post_id = FALSE )
 	$post_id = ( FALSE !== $post_id ) ? $post_id : get_the_ID();
 
 	echo get_event_date();
+
+}
+endif;
+
+
+
+if ( !function_exists( 'has_event_time' ) ) :
+/**
+ * Conditional if event time is set
+ *
+ * @param int $post_id Post ID
+ * @return bool
+ * @author Ralf Hortt
+ **/
+function has_event_time( $post_id = FALSE )
+{
+
+	$post_id = ( FALSE !== $post_id ) ? $post_id : get_the_ID();
+	return ( '' !== get_event_time( 'H:i', $post_id ) ) ? TRUE : FALSE;
 
 }
 endif;
