@@ -24,10 +24,7 @@ class Custom_Post_Type_Events_Widget extends WP_Widget {
 			'description' => __( 'Lists the latest events', 'custom-post-type-events' ),
 		);
 		$control_ops = array( 'id_base' => 'widget-events' );
-		$this->WP_Widget( 'widget-events', __( 'Events', 'custom-post-type-events' ), $widget_ops, $control_ops );
-
-		add_action( 'custom-post-type-events-widget-output', array( 'Custom_Post_Type_Events_Widget', 'widget_output'), 10, 3 );
-		add_action( 'custom-post-type-events-widget-loop-output', array( 'Custom_Post_Type_Events_Widget', 'widget_loop_output'), 10, 3 );
+		parent::__construct( 'widget-events', __( 'Events', 'custom-post-type-events' ), $widget_ops, $control_ops );
 
 	} // END __construct
 
@@ -61,11 +58,14 @@ class Custom_Post_Type_Events_Widget extends WP_Widget {
 			);
 		endif;
 
-		if ( 'event-date' == $instance['order'] ) :
-			$query['orderby'] = 'meta_key';
-			$query['meta_key'] = '_event-date-start';
-			$query['meta_value'] = time();
-			$query['meta_compare'] = '>=';
+		if ( 'event-date' == $instance['orderby'] ) :
+			$query['orderby'] = 'meta_value_num';
+			$query['meta_query'][] = array(
+				'key' => '_event-date-end',
+				'value' => time(),
+				'compare' => '>=',
+				'type' => 'NUMERIC'
+			);
 		endif;
 
 		$query = new WP_Query( $query );
@@ -106,7 +106,8 @@ class Custom_Post_Type_Events_Widget extends WP_Widget {
 		$instance['orderby'] = $new_instance['orderby'];
 		$instance['order'] = $new_instance['order'];
 		$instance['limit'] = $new_instance['limit'];
-		$instance['event-category'] = $new_instance['event-category'];
+
+		$instance['event-category'] = ( isset( $new_instance['event-category'] ) ) ? $new_instance['event-category'] : FALSE;
 
 		return $instance;
 
@@ -129,14 +130,14 @@ class Custom_Post_Type_Events_Widget extends WP_Widget {
 
 		<p>
 			<label for="<?php echo $this->get_field_name( 'title' ); ?>"><?php _e( 'Title:' ); ?></label><br>
-			<input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>" id="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo esc_attr( $instance['title'] ) ?>">
+			<input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>" id="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php if ( isset( $instance['title'] ) ) echo esc_attr( $instance['title'] ) ?>">
 		</p>
 
 		<p>
 			<label for="<?php echo $this->get_field_name( 'orderby' ); ?>"><?php _e( 'Order By:', 'custom-post-type-events' ); ?></label><br>
 			<select name="<?php echo $this->get_field_name( 'orderby' ); ?>" id="<?php echo $this->get_field_name( 'orderby' ); ?>">
 				<option <?php selected( $instance['orderby'], '' ) ?> value=""><?php _e( 'None' ); ?></option>
-				<option <?php selected( $instance['orderby'], 'event-date' ) ?> value="rand"><?php _e( 'Event date' ); ?></option>
+				<option <?php selected( $instance['orderby'], 'event-date' ) ?> value="event-date"><?php _e( 'Event date' ); ?></option>
 				<option <?php selected( $instance['orderby'], 'ID' ) ?> value="ID"><?php _e( 'ID', 'custom-post-type-events' ); ?></option>
 				<option <?php selected( $instance['orderby'], 'title' ) ?> value="title"><?php _e( 'Title' ); ?></option>
 				<option <?php selected( $instance['orderby'], 'date' ) ?> value="date"><?php _e( 'Publishing date' ); ?></option>
@@ -147,14 +148,14 @@ class Custom_Post_Type_Events_Widget extends WP_Widget {
 		<p>
 			<label for="<?php echo $this->get_field_name( 'order' ); ?>"><?php _e( 'Order:' ); ?></label><br>
 			<select name="<?php echo $this->get_field_name( 'order' ); ?>" id="<?php echo $this->get_field_name( 'order' ); ?>">
-				<option><?php _e( 'Ascending', 'custom-post-type-events' ); ?></option>
-				<option><?php _e( 'Descending', 'custom-post-type-events' ); ?></option>
+				<option <?php selected( $instance['order'], 'ASC') ?> value="ASC"><?php _e( 'Ascending', 'custom-post-type-events' ); ?></option>
+				<option <?php selected( $instance['order'], 'DESC') ?> value="DESC"><?php _e( 'Descending', 'custom-post-type-events' ); ?></option>
 			</select>
 		</p>
 
 		<p>
 			<label for="<?php echo $this->get_field_name( 'limit' ); ?>"><?php _e( 'Count:', 'custom-post-type-events' ); ?></label><br>
-			<input type="text" name="<?php echo $this->get_field_name( 'limit' ); ?>" id="<?php echo $this->get_field_name( 'limit' ); ?>" value="<?php echo esc_attr( $instance['limit'] ) ?>">
+			<input type="text" name="<?php echo $this->get_field_name( 'limit' ); ?>" id="<?php echo $this->get_field_name( 'limit' ); ?>" value="<?php if ( isset( $instance['limit'] ) )  echo esc_attr( $instance['limit'] ) ?>">
 		</p>
 
 		<?php
@@ -203,7 +204,7 @@ class Custom_Post_Type_Events_Widget extends WP_Widget {
 		?>
 
 		<li>
-			<a href="<?php the_permalink() ?>"><?php the_title() ?></a>
+			<a href="<?php the_permalink() ?>"><span><?php the_event_date() ?></span><br><?php the_title() ?></a>
 		</li>
 
 		<?php
