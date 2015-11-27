@@ -38,6 +38,9 @@ function get_event_location( $post_id = FALSE, $field = FALSE )
 	$post_id = ( FALSE === $post_id ) ? get_the_ID() : $post_id;
 	$location = get_post_meta( $post_id, '_event-location', TRUE );
 
+	if ( !array_filter( $location ) )
+		return FALSE;
+
 	if ( FALSE !== $field )
 		return $location[$field];
 
@@ -125,7 +128,7 @@ function the_event_datetime( $format = FALSE, $post_id = FALSE )
 	$format = ( FALSE !== $format ) ? $format : get_option( 'date_format' );
 	$post_id = ( FALSE !== $post_id ) ? $post_id : get_the_ID();
 
-	echo get_event_datetime();
+	echo get_event_datetime( $format, $post_id );
 
 }
 endif;
@@ -168,7 +171,7 @@ function get_event_date( $format = FALSE, $post_id = FALSE )
 	$format = ( FALSE !== $format ) ? $format : get_option( 'date_format' );
 	$post_id = ( FALSE !== $post_id ) ? $post_id : get_the_ID();
 
-	$event = get_event_info();
+	$event = get_event_info( $post_id );
 
 	if ( $event['multi-day'] )
 		$output = sprintf( '%s - %s', date_i18n( $format, $event['start'] ), date_i18n( $format, $event['end'] ) );
@@ -197,7 +200,7 @@ function the_event_date( $format = FALSE, $post_id = FALSE )
 	$format = ( FALSE !== $format ) ? $format : get_option( 'date_format' );
 	$post_id = ( FALSE !== $post_id ) ? $post_id : get_the_ID();
 
-	echo get_event_date();
+	echo get_event_date( $format, $post_id );
 
 }
 endif;
