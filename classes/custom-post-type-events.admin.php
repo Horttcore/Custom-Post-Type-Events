@@ -93,7 +93,16 @@ final class Custom_Post_Type_Events_Admin
 	public function admin_enqueue_styles()
 	{
 
-		wp_register_style( 'custom-post-type-events-admin', plugins_url( dirname( plugin_basename( __FILE__ ) ) . '/css/custom-post-type-events-admin.css' ) );
+		wp_register_style( 'custom-post-type-events-admin', plugins_url( dirname( plugin_basename( __FILE__ ) ) . '/../css/custom-post-type-events-admin.css' ) );
+
+		$screen = get_current_screen();
+
+		if ( 'post' != $screen->base )
+			return;
+
+		if ( 'event' != $screen->post_type )
+			return;
+
 		wp_enqueue_style( 'custom-post-type-events-admin' );
 
 	} // END admin_enqueue_styles
