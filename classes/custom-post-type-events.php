@@ -189,11 +189,23 @@ final class Custom_Post_Type_Events
 				'edit_item' => __( 'Edit Event', 'custom-post-type-events' ),
 				'new_item' => __( 'New Event', 'custom-post-type-events' ),
 				'view_item' => __( 'View Event', 'custom-post-type-events' ),
-				'search_items' => __( 'Search Event', 'custom-post-type-events' ),
+				'view_items' => __( 'View Events', 'custom-post-type-events' ),
+				'search_items' => __( 'Search Events', 'custom-post-type-events' ),
 				'not_found' =>  __( 'No Events found', 'custom-post-type-events' ),
 				'not_found_in_trash' => __( 'No Events found in Trash', 'custom-post-type-events' ),
-				'parent_item_colon' => '',
-				'menu_name' => __( 'Events', 'custom-post-type-events' )
+				'parent_item_colon' => __( 'Parent Event:', 'custom-post-type-events' ),
+				'all_items' => __( 'All Events', 'custom-post-type-events' ),
+				'archives' => __( 'Event Archives', 'custom-post-type-events' ),
+				'attributes' => __( 'Event Attributes', 'custom-post-type-events' ),
+				'insert_into_item' => __( 'Insert into event', 'custom-post-type-events' ),
+				'uploaded_to_this_item' => __( 'Uploaded to this event', 'custom-post-type-events' ),
+				'featured_image' => __( 'Featured Image', 'custom-post-type-events' ),
+				'set_featured_image' => __( 'Set featured image', 'custom-post-type-events' ),
+				'remove_featured_image' => __( 'Remove featured image', 'custom-post-type-events' ),
+				'use_featured_image' => __( 'Use as featured image', 'custom-post-type-events' ),
+				'filter_items_list' => __( 'Filter events list', 'custom-post-type-events' ),
+				'items_list_navigation' => __( 'Events list navigation', 'custom-post-type-events' ),
+				'items_list' => __( 'Events list', 'custom-post-type-events' ),
 			),
 			'public' => TRUE,
 			'publicly_queryable' => TRUE,
@@ -230,14 +242,22 @@ final class Custom_Post_Type_Events
 				'name' => _x( 'Event Categories', 'taxonomy general name', 'custom-post-type-events' ),
 				'singular_name' => _x( 'Event Category', 'taxonomy singular name', 'custom-post-type-events' ),
 				'search_items' =>  __( 'Search Event Categories', 'custom-post-type-events' ),
+				'popular_items' =>  __( 'Popular Event Categories', 'custom-post-type-events' ),
 				'all_items' => __( 'All Event Categories', 'custom-post-type-events' ),
 				'parent_item' => __( 'Parent Event Category', 'custom-post-type-events' ),
 				'parent_item_colon' => __( 'Parent Event Category:', 'custom-post-type-events' ),
 				'edit_item' => __( 'Edit Event Category', 'custom-post-type-events' ),
+				'view_item' => __( 'View Event Category', 'custom-post-type-events' ),
 				'update_item' => __( 'Update Event Category', 'custom-post-type-events' ),
 				'add_new_item' => __( 'Add New Event Category', 'custom-post-type-events' ),
 				'new_item_name' => __( 'New Event Category Name', 'custom-post-type-events' ),
-				'menu_name' => __( 'Event Categories', 'custom-post-type-events' ),
+				'separate_items_with_commas' => __( 'Separate event categories with commas', 'custom-post-type-events' ),
+				'add_or_remove_items' => __( 'Add or remove event categories', 'custom-post-type-events' ),
+				'choose_from_most_used' => __( 'Choose from the most used event categories', 'custom-post-type-events' ),
+				'not_found' => __( 'No event categories found', 'custom-post-type-events' ),
+				'no_terms' => __( 'No event categories', 'custom-post-type-events' ),
+				'items_list_navigation' => __( 'Event Categories list navigation', 'custom-post-type-events' ),
+				'items_list' => __( 'Event Categories list', 'custom-post-type-events' ),
 			),
 			'show_ui' => TRUE,
 			'query_var' => TRUE,
@@ -263,7 +283,7 @@ final class Custom_Post_Type_Events
 	public function rewrite_rules( $rules )
 	{
 
-	    global $wp_rewrite;
+		global $wp_rewrite;
 
 		return array_merge( array(
 				_x( 'events', 'Post Type Slug', 'custom-post-type-events' ) . '/(.+)/(.+)/(.+)/?$' => 'index.php?post_type=event&event-year=$matches[1]&event-month=$matches[2]&event-day=$matches[3]',
@@ -287,10 +307,10 @@ final class Custom_Post_Type_Events
 
 		register_widget( 'Custom_Post_Type_Events_Widget' );
 
-	}
+	} // END widgets_init
 
 
 
-}
+} // END class Custom_Post_Type_Events
 
 new Custom_Post_Type_Events;
