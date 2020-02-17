@@ -1,0 +1,17 @@
+{
+    "name": "horttcore/wp-custom-taxonomy",
+    "description": "A WordPress custom taxonomy helper",
+    "license": "MIT",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Ralf Hortt",
+            "email": "me@horttcore.de"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Horttcore\\CustomTaxonomy\\": "src/"
+        }
+    }
+}

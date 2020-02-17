@@ -1,0 +1,16 @@
+{
+    "name": "horttcore/wp-custom-post-type",
+    "description": "A custom post type helper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ralf Hortt",
+            "email": "me@horttcore.de"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Horttcore\\CustomPostType\\": "src/"
+        }
+    }
+}

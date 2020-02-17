@@ -1,0 +1,29 @@
+{
+    "name": "horttcore/custom-post-type-events",
+    "description": "A WordPress custom post type for managing events",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ralf Hortt",
+            "email": "me@horttcore.de"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "RalfHortt\\CustomPostTypeEvents\\": "src/"
+        },
+        "files": [
+            "inc/template-tags.php",
+            "inc/functions.date.php",
+            "inc/functions.navigation.php"
+        ]
+    },
+    "require": {
+        "horttcore/wp-custom-post-type": "1.0.2",
+        "horttcore/wp-custom-taxonomy": "^1.0.0",
+        "horttcore/wp-plugin": "^1.0.1",
+        "horttcore/wp-meta-box": "^1.0.0"
+    }
+}

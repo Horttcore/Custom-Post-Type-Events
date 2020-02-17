@@ -1,0 +1,26 @@
+{
+  "name": "custom-post-type-events",
+  "version": "1.0.0",
+  "description": "A WordPress custom post type for managing events",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Horttcore/Custom-Post-Type-Events"
+  },
+  "scripts": {
+    "dev": "NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hot": "NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "production": "NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "author": "Ralf Hortt",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/preset-react": "^7.0.0",
+    "babel-preset-react": "^6.24.1",
+    "classnames": "^2.2.6",
+    "laravel-mix": "^4.1.2",
+    "resolve-url-loader": "3.1.0",
+    "sass": "^1.22.9",
+    "sass-loader": "7.*"
+  }
+}

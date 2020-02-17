@@ -1,0 +1,17 @@
+{
+    "name": "horttcore/wp-meta-box",
+    "description": "A WordPress meta box helper",
+    "license": "MIT",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Ralf Hortt",
+            "email": "me@horttcore.de"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Horttcore\\MetaBoxes\\": "src/"
+        }
+    }
+}

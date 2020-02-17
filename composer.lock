@@ -1,0 +1,150 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "04115def5c76069aa9dfeb73c550b6cd",
+    "packages": [
+        {
+            "name": "horttcore/wp-custom-post-type",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Horttcore/wp-custom-post-type.git",
+                "reference": "863492fd82dad29cad1a986468a62d2611b08479"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Horttcore/wp-custom-post-type/zipball/863492fd82dad29cad1a986468a62d2611b08479",
+                "reference": "863492fd82dad29cad1a986468a62d2611b08479",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Horttcore\\CustomPostType\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ralf Hortt",
+                    "email": "me@horttcore.de"
+                }
+            ],
+            "description": "A custom post type helper",
+            "time": "2019-01-16T11:38:13+00:00"
+        },
+        {
+            "name": "horttcore/wp-custom-taxonomy",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Horttcore/wp-custom-taxonomy.git",
+                "reference": "a99534b774892a6a4ed477bdf7fbbb3315ddd9b3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Horttcore/wp-custom-taxonomy/zipball/a99534b774892a6a4ed477bdf7fbbb3315ddd9b3",
+                "reference": "a99534b774892a6a4ed477bdf7fbbb3315ddd9b3",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Horttcore\\CustomTaxonomy\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ralf Hortt",
+                    "email": "me@horttcore.de"
+                }
+            ],
+            "description": "A WordPress custom taxonomy helper",
+            "time": "2019-01-16T07:02:41+00:00"
+        },
+        {
+            "name": "horttcore/wp-meta-box",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Horttcore/wp-meta-box.git",
+                "reference": "98a6a610470eda97c179e05775fc00506ee75955"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Horttcore/wp-meta-box/zipball/98a6a610470eda97c179e05775fc00506ee75955",
+                "reference": "98a6a610470eda97c179e05775fc00506ee75955",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Horttcore\\MetaBoxes\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ralf Hortt",
+                    "email": "me@horttcore.de"
+                }
+            ],
+            "description": "A WordPress meta box helper",
+            "time": "2019-01-16T09:32:38+00:00"
+        },
+        {
+            "name": "horttcore/wp-plugin",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Horttcore/wp-plugin.git",
+                "reference": "e46280beadd856d5f9515a62f6470908f0592b58"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Horttcore/wp-plugin/zipball/e46280beadd856d5f9515a62f6470908f0592b58",
+                "reference": "e46280beadd856d5f9515a62f6470908f0592b58",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Horttcore\\Plugin\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ralf Hortt",
+                    "email": "me@horttcore.de"
+                }
+            ],
+            "description": "A WordPress plugin helper",
+            "time": "2019-01-16T11:00:45+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
