@@ -263,8 +263,8 @@ export default compose([
         const { getEditedPostAttribute, getCurrentPostType } = select('core/editor');
         const meta = getEditedPostAttribute('meta');
 
-        const eventStartDateTime = meta.eventStart ? new Date(meta.eventStart) : '';
-        const eventEndDateTime = meta.eventEnd ? new Date(meta.eventEnd) : '';
+        const eventStartDateTime = meta.eventStart ? new Date(...(meta.eventStart.split(/\D/).map((x, i) => i == 1 ? x - 1 : x))) : '';
+        onst eventEndDateTime = meta.eventEnd ? new Date(...(meta.eventEnd.split(/\D/).map((x, i) => i == 1 ? x - 1 : x))) : '';
 
         const eventStart = eventStartDateTime ? eventStartDateTime.toLocaleDateString(window.wp.editor.getDefaultSettings().tinymce.wp_lang_att) : '';
         const eventTimeStart = eventStartDateTime ? eventStartDateTime.getHours() + ':' + ('0' + eventStartDateTime.getMinutes()).slice(-2) : '';
