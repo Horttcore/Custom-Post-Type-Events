@@ -1,0 +1,17 @@
+.event-toggle-container,
+.event-time-container {
+    display: flex;
+    gap: var(--gap, 0.25rem);
+}
+
+.event-toggle-container {
+    --gap: 1rem;
+}
+
+.event-time-container {
+    align-items: end;
+}
+
+.event-time-seperator {
+    margin-block-end: 1rem;
+}

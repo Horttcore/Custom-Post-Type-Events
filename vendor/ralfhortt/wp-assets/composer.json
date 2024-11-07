@@ -1,0 +1,22 @@
+{
+    "name": "ralfhortt/wp-assets",
+    "description": "A helper package for working with the WordPress assets",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ralf Hortt",
+            "email": "mail@ralfhortt.dev"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "RalfHortt\\Assets\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=8.2"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.12"
+    }
+}

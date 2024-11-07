@@ -1,0 +1,19 @@
+{
+    "name": "ralfhortt/wp-block",
+    "description": "A composer wrapper for ServerSideRender blocks",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Ralf Hortt",
+            "email": "me@horttcore.de"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "RalfHortt\\WPBlock\\": "src/"
+        }
+    },
+    "require": {
+        "ralfhortt/service-contracts": "^1.0"
+    }
+}

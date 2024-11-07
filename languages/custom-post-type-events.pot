@@ -1,3 +1,4 @@
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Custom Post Type Events\n"
@@ -5,17 +6,18 @@ msgstr ""
 "PO-Revision-Date: 2023-02-16 22:45+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "X-Generator: Poedit 3.2.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: plugin.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
@@ -24,323 +26,314 @@ msgstr ""
 #: assets/js/blocks/events/index.js:14 src/Events.php:90 src/Events.php:91
 #: src/Events.php:92
 msgid "Events"
-msgstr "Veranstaltungen"
+msgstr ""
 
 #: assets/js/blocks/events/edit.js:29
 msgid "Number of items"
-msgstr "Anzahl der Artikel"
+msgstr ""
 
 #: assets/js/blocks/events/index.js:10
-#, fuzzy
 msgid "Shows a custom event loop"
-msgstr "Zeigt eine benutzerdefinierte Ereignisschleife an"
+msgstr ""
 
 #: assets/js/blocks/events/index.js:15
 msgid "Query"
-msgstr "Abfrage"
+msgstr ""
 
 #: assets/js/blocks/events/index.js:16
 msgid "Loop"
-msgstr "Schleife"
+msgstr ""
 
 #: assets/js/meta/event-date/component/event-datetime-picker.js:52
 #: src/Meta/EventDate.php:64
 msgid "Event Date"
-msgstr "Veranstaltungsdatum"
+msgstr ""
 
 #: assets/js/meta/event-date/component/event-datetime-picker.js:58
 msgid "Multi-day"
-msgstr "Mehrtägig"
+msgstr ""
 
 #: assets/js/meta/event-date/component/event-datetime-picker.js:64
 msgid "All-day"
-msgstr "Ganztägig"
+msgstr ""
 
 #: assets/js/meta/event-date/component/event-datetime-picker.js:72
 msgid "Start date"
-msgstr "Startdatum"
+msgstr ""
 
 #: assets/js/meta/event-date/component/event-datetime-picker.js:72
 msgid "Date"
-msgstr "Datum"
+msgstr ""
 
 #: assets/js/meta/event-date/component/event-datetime-picker.js:73
 #: assets/js/meta/event-date/component/event-datetime-picker.js:98
 msgid "dd.mm.yyyy"
-msgstr "dd.mm.yyyy"
+msgstr ""
 
 #: assets/js/meta/event-date/component/event-datetime-picker.js:80
 #: assets/js/meta/event-date/component/event-datetime-picker.js:105
 msgid "Select a Date"
-msgstr "Wähle ein Datum"
+msgstr ""
 
 #: assets/js/meta/event-date/component/event-datetime-picker.js:97
 msgid "End date"
-msgstr "Enddatum"
+msgstr ""
 
 #: assets/js/meta/event-date/component/event-datetime-picker.js:122
 msgid "Time"
-msgstr "Zeit"
+msgstr ""
 
 #: assets/js/meta/event-date/component/event-datetime-picker.js:123
 #: assets/js/meta/event-date/component/event-datetime-picker.js:132
-#, fuzzy
 msgid "hh:ii"
-msgstr "hh:ii"
+msgstr ""
 
 #: assets/js/meta/event-date/component/event-datetime-picker.js:157
 msgid "Reset"
-msgstr "Zurücksetzen"
+msgstr ""
 
 #: src/EventCategories.php:27
-#, fuzzy
 msgctxt "Taxonomy slug"
 msgid "event-categories"
-msgstr "Event-Kategorien"
+msgstr ""
 
 #: src/EventCategories.php:40
 msgctxt "taxonomy general name"
 msgid "Event Categories"
-msgstr "Veranstaltungskategorien"
+msgstr ""
 
 #: src/EventCategories.php:41
 msgctxt "taxonomy singular name"
 msgid "Event Category"
-msgstr "Veranstaltungskategorie"
+msgstr ""
 
 #: src/EventCategories.php:42
 msgid "Event Categories"
-msgstr "Veranstaltungskategorien"
+msgstr ""
 
 #: src/EventCategories.php:43
 msgid "All Event Categories"
-msgstr "Alle Veranstaltungskategorien"
+msgstr ""
 
 #: src/EventCategories.php:44
 msgid "Edit Event Category"
-msgstr "Veranstaltungskategorie bearbeiten"
+msgstr ""
 
 #: src/EventCategories.php:45
 msgid "View Event Category"
-msgstr "Veranstaltungskategorie ansehen"
+msgstr ""
 
 #: src/EventCategories.php:46
 msgid "Update Event Category"
-msgstr "Event-Kategorie aktualisieren"
+msgstr ""
 
 #: src/EventCategories.php:47
 msgid "Add New Event Category"
-msgstr "Neue Veranstaltungskategorie hinzufügen"
+msgstr ""
 
 #: src/EventCategories.php:48
 msgid "New Event Category Name"
-msgstr "Name der neuen Veranstaltungskategorie"
+msgstr ""
 
 #: src/EventCategories.php:49
 msgid "Parent Event Category"
-msgstr "Übergeordnete Kategorie"
+msgstr ""
 
 #: src/EventCategories.php:50
 msgid "Parent Event Category:"
-msgstr "Übergeordnere Veranstaltungskategorie:"
+msgstr ""
 
 #: src/EventCategories.php:51
 msgid "Search Event Categories"
-msgstr "Veranstaltungskategorien durchsuchen"
+msgstr ""
 
 #: src/EventCategories.php:52
 msgid "Popular Event Categories"
-msgstr "Beliebte Event-Kategorien"
+msgstr ""
 
 #: src/EventCategories.php:53
 msgid "Separate event categories with commas"
-msgstr "Trenne Veranstaltungskategorien mit Kommas"
+msgstr ""
 
 #: src/EventCategories.php:54
-#, fuzzy
 msgid "Add or remove tags event categories"
-msgstr "Hinzufügen oder Entfernen von Tags Ereigniskategorien"
+msgstr ""
 
 #: src/EventCategories.php:55
 msgid "Choose from the most used event categories"
-msgstr "Aus den am meisten verwendeten Kategorien wählen"
+msgstr ""
 
 #: src/EventCategories.php:56
-#, fuzzy
 msgid "No event categories found."
-msgstr "Keine Ereigniskategorien gefunden."
+msgstr ""
 
 #: src/EventCategories.php:57
-#, fuzzy
 msgid "Back to event categories"
-msgstr "Zurück zu den Veranstaltungskategorien"
+msgstr ""
 
 #: src/Events.php:51 src/Events.php:55
 msgctxt "Post Type Slug"
 msgid "events"
-msgstr "Veranstaltungen"
+msgstr ""
 
 #: src/Events.php:68 src/Events.php:89
 msgctxt "post type general name"
 msgid "Events"
-msgstr "Veranstaltungen"
+msgstr ""
 
 #: src/Events.php:69
 msgctxt "post type singular name"
 msgid "Event"
-msgstr "Veranstaltung"
+msgstr ""
 
 #: src/Events.php:70
 msgctxt "Event"
 msgid "Add New"
-msgstr "Neu hinzufügen"
+msgstr ""
 
 #: src/Events.php:71
 msgid "Add New Event"
-msgstr "Neue Veranstaltung hinzufügen"
+msgstr ""
 
 #: src/Events.php:72
 msgid "Edit Event"
-msgstr "Veranstaltung bearbeiten"
+msgstr ""
 
 #: src/Events.php:73
 msgid "New Event"
-msgstr "Neues Event"
+msgstr ""
 
 #: src/Events.php:74
 msgid "View Event"
-msgstr "Veranstaltung anzeigen"
+msgstr ""
 
 #: src/Events.php:75
 msgid "View Events"
-msgstr "Veranstaltung anzeigen"
+msgstr ""
 
 #: src/Events.php:76
 msgid "Search Events"
-msgstr "Events durchsuchen"
+msgstr ""
 
 #: src/Events.php:77
 msgid "No Events found"
-msgstr "Keine Events gefunden"
+msgstr ""
 
 #: src/Events.php:78
 msgid "No Events found in Trash"
-msgstr "Keine Termine im Papierkorb gefunden"
+msgstr ""
 
 #: src/Events.php:79
 msgid "Parent Event"
-msgstr "Übergeordnete Veranstaltung"
+msgstr ""
 
 #: src/Events.php:80
 msgid "All Events"
-msgstr "Alle Veranstaltungen"
+msgstr ""
 
 #: src/Events.php:81
 msgid "Event Archives"
-msgstr "Event-Archive"
+msgstr ""
 
 #: src/Events.php:82
 msgid "Event Attributes"
-msgstr "Veranstaltungsattribute"
+msgstr ""
 
 #: src/Events.php:83
 msgid "Insert into event"
-msgstr "Zur Veranstaltung hinzufügen"
+msgstr ""
 
 #: src/Events.php:84
 msgid "Uploaded to this page"
-msgstr "Auf diese Seite hochgeladen"
+msgstr ""
 
 #: src/Events.php:85
 msgid "Event image"
-msgstr "Bild der Veranstaltung"
+msgstr ""
 
 #: src/Events.php:86
 msgid "Set Event image"
-msgstr "Eventbild festlegen"
+msgstr ""
 
 #: src/Events.php:87
-#, fuzzy
 msgid "Remove Event image"
-msgstr "Ereignisbild entfernen"
+msgstr ""
 
 #: src/Events.php:88
 msgid "Use as Event image"
-msgstr "Als Veranstaltungsbild verwenden"
+msgstr ""
 
 #: src/Events.php:109 src/Events.php:112
 msgid "Event updated."
-msgstr "Event aktualisiert."
+msgstr ""
 
 #: src/Events.php:110
 msgid "Custom field updated."
-msgstr "Benutzerdefiniertes Feld aktualisiert."
+msgstr ""
 
 #: src/Events.php:111
 msgid "Custom field deleted."
-msgstr "Benutzerdefiniertes Feld gelöscht."
+msgstr ""
 
 #: src/Events.php:113
 #, php-format
 msgid "Event restored to revision from %s"
-msgstr "Termin von %s nach Revision wieder hergestellt"
+msgstr ""
 
 #: src/Events.php:114
 msgid "Event published."
-msgstr "Termin veröffentlicht."
+msgstr ""
 
 #: src/Events.php:115
 msgid "Event saved."
-msgstr "Termin gespeichert"
+msgstr ""
 
 #: src/Events.php:116
 msgid "Event submitted."
-msgstr "Veranstaltung übertragen."
+msgstr ""
 
 #: src/Events.php:117
 #, php-format
 msgid "Event scheduled for: <strong>%1$s</strong>."
-msgstr "Termin geplant für: <strong>%1$s</strong>."
+msgstr ""
 
 #: src/Events.php:117
 msgid "M j, Y @ G:i"
-msgstr "M j, Y @ G:i"
+msgstr ""
 
 #: src/Events.php:118
 msgid "Event draft updated."
-msgstr "Terminentwurf aktualisiert."
+msgstr ""
 
 #: src/Events.php:126
 msgid "View event"
-msgstr "Veranstaltung anzeigen"
+msgstr ""
 
 #: src/Events.php:132
 msgid "Preview event"
-msgstr "Eventvorschau"
+msgstr ""
 
 #: src/Meta/EventLocation.php:17
 msgid "Location"
-msgstr "Standort"
+msgstr ""
 
 #: views/single.php:29
 msgid "Read more"
-msgstr "Weiterlesen"
+msgstr ""
 
 #. Plugin Name of the plugin/theme
-#, fuzzy
 msgid "Custom Post Type Events"
-msgstr "Ereignisse vom Typ \"Benutzerdefinierte Beiträge\""
+msgstr ""
 
 #. Plugin URI of the plugin/theme
 #. Author URI of the plugin/theme
 msgid "https://horttcore.de"
-msgstr "https://horttcore.de"
+msgstr ""
 
 #. Description of the plugin/theme
-#, fuzzy
 msgid "A custom post type for managing events"
-msgstr "Ein benutzerdefinierter Beitragstyp zum Verwalten von Ereignissen"
+msgstr ""
 
 #. Author of the plugin/theme
 msgid "Ralf Hortt"
-msgstr "Ralf Hortt"
+msgstr ""

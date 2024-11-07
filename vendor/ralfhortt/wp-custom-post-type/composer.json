@@ -1,0 +1,16 @@
+{
+    "name": "ralfhortt/wp-custom-post-type",
+    "description": "A custom post type helper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ralf Hortt",
+            "email": "mail@ralfhortt.dev"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "RalfHortt\\CustomPostType\\": "src/"
+        }
+    }
+}
