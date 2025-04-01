@@ -14,7 +14,7 @@ class EventDate
         \add_action('manage_event_posts_custom_column', [$this, 'printAdminColumn'], 5, 2);
         \add_filter('manage_edit-event_sortable_columns', [$this, 'makeAdminColumnSortable']);
         \add_action('pre_get_posts', [$this, 'addDefaultOrder'], 5);
-        \add_action('pre_get_posts', [$this, 'OrderByEventDate'], 10);
+        \add_action('pre_get_posts', [$this, 'orderByEventDate'], 10);
         \add_action('pre_get_posts', [$this, 'sortableByEventDate'], 15);
         \add_filter('rest_event_collection_params', [$this, 'addCustomOrderByValue']);
     }
@@ -82,16 +82,15 @@ class EventDate
      **/
     public function addDefaultOrder(\WP_Query $query): void
     {
-        $postType = $query->get('post_type');
-
-        if ($postType != 'event' || is_admin()) {
+        if ($query->get('post_type') != 'event') {
             return;
         }
 
         $orderBy = $query->get('orderBy');
-        if (! $orderBy) {
+        if (!$orderBy) {
+            $order = $query->get('order');
             $query->set('orderBy', 'event-date');
-            $query->set('order', 'asc');
+            $query->set('order', $order ?: 'asc');
         }
     }
 
@@ -110,9 +109,9 @@ class EventDate
         $query->set('orderBy', 'meta_value');
     }
 
-    public function OrderByEventDate(\WP_Query $query): void
+    public function orderByEventDate(\WP_Query $query): void
     {
-        if (is_admin() || ! $query->is_main_query() || $query->get('orderBy') != 'event-date') {
+        if (is_admin() || $query->is_main_query() || $query->get('orderBy') != 'event-date') {
             return;
         }
 

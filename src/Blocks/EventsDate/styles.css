@@ -1,0 +1,10 @@
+.events__list {
+    display: grid;
+    gap: var(--gap, 0);
+}
+
+@media (min-width: 48.875rem) {
+    .events__list {
+        grid-template-columns: repeat(var(--columns, 1), 1fr);
+    }
+}

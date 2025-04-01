@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Custom Post Type Events\n"
-"POT-Creation-Date: 2023-02-16 22:45+0100\n"
-"PO-Revision-Date: 2023-02-16 22:45+0100\n"
+"POT-Creation-Date: 2025-04-01 21:36+0200\n"
+"PO-Revision-Date: 2025-04-01 21:38+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -10,326 +10,521 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.6\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: plugin.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
 
-#: assets/js/blocks/events/edit.js:27 assets/js/blocks/events/index.js:9
-#: assets/js/blocks/events/index.js:14 src/Events.php:90 src/Events.php:91
-#: src/Events.php:92
-msgid "Events"
-msgstr "Veranstaltungen"
+#: node_modules/lighthouse/node_modules/yargs/build/lib/usage.js:92
+#: node_modules/yargs/build/lib/usage.js:92
+msgid "Positionals:"
+msgstr ""
 
-#: assets/js/blocks/events/edit.js:29
+#: node_modules/lighthouse/node_modules/yargs/build/lib/usage.js:189
+#: node_modules/lighthouse/node_modules/yargs/build/lib/usage.js:192
+#: node_modules/yargs/build/lib/usage.js:189
+#: node_modules/yargs/build/lib/usage.js:192
+msgid "command"
+msgstr ""
+
+#: node_modules/lighthouse/node_modules/yargs/build/lib/usage.js:198
+#: node_modules/yargs/build/lib/usage.js:198
+msgid "Commands:"
+msgstr ""
+
+#: node_modules/lighthouse/node_modules/yargs/build/lib/usage.js:217
+#: node_modules/yargs/build/lib/usage.js:217
+msgid "default"
+msgstr ""
+
+#: node_modules/lighthouse/node_modules/yargs/build/lib/usage.js:219
+#: node_modules/yargs/build/lib/usage.js:219
+msgid "aliases:"
+msgstr ""
+
+#: node_modules/lighthouse/node_modules/yargs/build/lib/usage.js:223
+#: node_modules/lighthouse/node_modules/yargs/build/lib/usage.js:329
+#: node_modules/yargs/build/lib/usage.js:223
+#: node_modules/yargs/build/lib/usage.js:329
+#, javascript-format
+msgid "deprecated: %s"
+msgstr ""
+
+#: node_modules/lighthouse/node_modules/yargs/build/lib/usage.js:226
+#: node_modules/lighthouse/node_modules/yargs/build/lib/usage.js:330
+#: node_modules/yargs/build/lib/usage.js:226
+#: node_modules/yargs/build/lib/usage.js:330
+msgid "deprecated"
+msgstr ""
+
+#: node_modules/lighthouse/node_modules/yargs/build/lib/usage.js:245
+#: node_modules/yargs/build/lib/usage.js:245
+msgid "Options:"
+msgstr "Optionen:"
+
+#: node_modules/lighthouse/node_modules/yargs/build/lib/usage.js:317
+#: node_modules/yargs/build/lib/usage.js:317
+msgid "boolean"
+msgstr ""
+
+#: node_modules/lighthouse/node_modules/yargs/build/lib/usage.js:319
+#: node_modules/yargs/build/lib/usage.js:319
+msgid "count"
+msgstr ""
+
+#: node_modules/lighthouse/node_modules/yargs/build/lib/usage.js:321
+#: node_modules/lighthouse/node_modules/yargs/build/lib/usage.js:323
+#: node_modules/yargs/build/lib/usage.js:321
+#: node_modules/yargs/build/lib/usage.js:323
+msgid "string"
+msgstr ""
+
+#: node_modules/lighthouse/node_modules/yargs/build/lib/usage.js:325
+#: node_modules/yargs/build/lib/usage.js:325
+msgid "array"
+msgstr ""
+
+#: node_modules/lighthouse/node_modules/yargs/build/lib/usage.js:327
+#: node_modules/yargs/build/lib/usage.js:327
+msgid "number"
+msgstr ""
+
+#: node_modules/lighthouse/node_modules/yargs/build/lib/usage.js:336
+#: node_modules/yargs/build/lib/usage.js:336
+msgid "required"
+msgstr ""
+
+#: node_modules/lighthouse/node_modules/yargs/build/lib/usage.js:338
+#: node_modules/yargs/build/lib/usage.js:338
+msgid "choices:"
+msgstr ""
+
+#: node_modules/lighthouse/node_modules/yargs/build/lib/usage.js:359
+#: node_modules/yargs/build/lib/usage.js:359
+msgid "Examples:"
+msgstr ""
+
+#: node_modules/lighthouse/node_modules/yargs/build/lib/usage.js:464
+#: node_modules/yargs/build/lib/usage.js:464
+msgid "generated-value"
+msgstr ""
+
+#: node_modules/lighthouse/node_modules/yargs/build/lib/usage.js:481
+#: node_modules/yargs/build/lib/usage.js:481
+msgid "default:"
+msgstr ""
+
+#: node_modules/lighthouse/node_modules/yargs/build/lib/validation.js:160
+#: node_modules/yargs/build/lib/validation.js:160
+msgid "Invalid values:"
+msgstr ""
+
+#: node_modules/lighthouse/node_modules/yargs/build/lib/validation.js:162
+#: node_modules/yargs/build/lib/validation.js:162
+#, javascript-format
+msgid "Argument: %s, Given: %s, Choices: %s"
+msgstr ""
+
+#: node_modules/lighthouse/node_modules/yargs/build/lib/validation.js:221
+#: node_modules/yargs/build/lib/validation.js:221
+msgid "Implications failed:"
+msgstr ""
+
+#: node_modules/lighthouse/node_modules/yargs/build/lib/validation.js:255
+#: node_modules/lighthouse/node_modules/yargs/build/lib/validation.js:266
+#: node_modules/yargs/build/lib/validation.js:255
+#: node_modules/yargs/build/lib/validation.js:266
+#, javascript-format
+msgid "Arguments %s and %s are mutually exclusive"
+msgstr ""
+
+#: node_modules/lighthouse/node_modules/yargs/build/lib/validation.js:285
+#: node_modules/yargs/build/lib/validation.js:285
+#, javascript-format
+msgid "Did you mean %s?"
+msgstr "Meintest Du %s?"
+
+#: node_modules/lighthouse/node_modules/yargs/build/lib/yargs-factory.js:183
+#: node_modules/yargs/build/lib/yargs-factory.js:183
+#, javascript-format
+msgid "Argument check failed: %s"
+msgstr "Argumentprüfung fehlgeschlagen: %s"
+
+#: node_modules/meow/node_modules/yargs-parser/build/lib/yargs-parser.js:419
+#: node_modules/stylelint/node_modules/meow/build/dependencies.js:465
+#: node_modules/yargs-parser/build/lib/yargs-parser.js:422
+#, javascript-format
+msgid "Argument unexpected for: %s"
+msgstr "Unerwartetes Argument für: %s"
+
+#: node_modules/meow/node_modules/yargs-parser/build/lib/yargs-parser.js:428
+#: node_modules/meow/node_modules/yargs-parser/build/lib/yargs-parser.js:442
+#: node_modules/meow/node_modules/yargs-parser/build/lib/yargs-parser.js:495
+#: node_modules/stylelint/node_modules/meow/build/dependencies.js:473
+#: node_modules/stylelint/node_modules/meow/build/dependencies.js:485
+#: node_modules/stylelint/node_modules/meow/build/dependencies.js:528
+#: node_modules/yargs-parser/build/lib/yargs-parser.js:431
+#: node_modules/yargs-parser/build/lib/yargs-parser.js:445
+#: node_modules/yargs-parser/build/lib/yargs-parser.js:498
+#, javascript-format
+msgid "Not enough arguments following: %s"
+msgstr "Nicht genügend Argumente nach: %s"
+
+#: node_modules/meow/node_modules/yargs-parser/build/lib/yargs-parser.js:634
+#: node_modules/stylelint/node_modules/meow/build/dependencies.js:648
+#: node_modules/yargs-parser/build/lib/yargs-parser.js:635
+#, javascript-format
+msgid "Invalid JSON config file: %s"
+msgstr "Ungültige JSON-Konfigurationsdatei: %s"
+
+#: node_modules/meow/node_modules/yargs-parser/build/lib/yargs-parser.js:963
+#: node_modules/stylelint/node_modules/meow/build/dependencies.js:937
+#: node_modules/yargs-parser/build/lib/yargs-parser.js:964
+#, javascript-format
+msgid "Invalid configuration: %s, opts.count excludes opts.array."
+msgstr ""
+
+#: node_modules/meow/node_modules/yargs-parser/build/lib/yargs-parser.js:967
+#: node_modules/stylelint/node_modules/meow/build/dependencies.js:941
+#: node_modules/yargs-parser/build/lib/yargs-parser.js:968
+#, javascript-format
+msgid "Invalid configuration: %s, opts.count excludes opts.narg."
+msgstr ""
+
+#: node_modules/prettier/plugins/angular.js:2
+msgid "{{"
+msgstr ""
+
+#: src/Blocks/Events/loop-control.js:72
+#: src/Blocks/EventsDate/loop-control.js:72
+msgid "List View"
+msgstr "Listenansicht"
+
+#: src/Blocks/Events/loop-control.js:78
+#: src/Blocks/EventsDate/loop-control.js:78
+msgid "Grid View"
+msgstr "Gitteransicht"
+
+#: src/Blocks/Events/loop-control.js:89
+#: src/Blocks/EventsDate/loop-control.js:89
+msgid "A → Z"
+msgstr "A → Z"
+
+#: src/Blocks/Events/loop-control.js:93
+#: src/Blocks/EventsDate/loop-control.js:93
+msgid "Newest to Oldest"
+msgstr "Neueste zuerst"
+
+#: src/Blocks/Events/loop-control.js:97
+#: src/Blocks/EventsDate/loop-control.js:97
+msgid "Oldest to Newest"
+msgstr "Älteste zuerst"
+
+#: src/Blocks/Events/loop-control.js:101
+#: src/Blocks/EventsDate/loop-control.js:101
+msgid "Menu order"
+msgstr "Menüreihenfolge"
+
+#: src/Blocks/Events/loop-control.js:198
+#: src/Blocks/EventsDate/loop-control.js:198
 msgid "Number of items"
 msgstr "Anzahl der Artikel"
 
-#: assets/js/blocks/events/index.js:10
-#, fuzzy
-msgid "Shows a custom event loop"
-msgstr "Zeigt eine benutzerdefinierte Ereignisschleife an"
+#: src/Blocks/Events/loop-control.js:214
+#: src/Blocks/EventsDate/loop-control.js:214
+msgid "Grid columns"
+msgstr "Spalten"
 
-#: assets/js/blocks/events/index.js:15
-msgid "Query"
-msgstr "Abfrage"
+#: src/Blocks/Events/loop-control.js:224
+#: src/Blocks/EventsDate/loop-control.js:224
+msgid "Offset"
+msgstr "Offset"
 
-#: assets/js/blocks/events/index.js:16
-msgid "Loop"
-msgstr "Schleife"
+#: src/Meta/EventArchive.php:24 src/PostTypes/Events.php:30
+#: src/PostTypes/Events.php:34
+msgctxt "Post Type Slug"
+msgid "events"
+msgstr "veranstaltungen"
 
-#: assets/js/meta/event-date/component/event-datetime-picker.js:52
-#: src/Meta/EventDate.php:64
+#: src/Meta/EventArchive.php:24
+msgid "archive"
+msgstr "archiv"
+
+#: src/Meta/EventArchive.php:30
+msgctxt "Past events archive suffix"
+msgid "archive"
+msgstr "archiv"
+
+#: src/Meta/EventDate.php:65 src/Meta/date-picker.js:91
 msgid "Event Date"
 msgstr "Veranstaltungsdatum"
 
-#: assets/js/meta/event-date/component/event-datetime-picker.js:58
+#: src/Meta/date-picker.js:95
 msgid "Multi-day"
 msgstr "Mehrtägig"
 
-#: assets/js/meta/event-date/component/event-datetime-picker.js:64
+#: src/Meta/date-picker.js:106
 msgid "All-day"
 msgstr "Ganztägig"
 
-#: assets/js/meta/event-date/component/event-datetime-picker.js:72
+#: src/Meta/date-picker.js:121
 msgid "Start date"
 msgstr "Startdatum"
 
-#: assets/js/meta/event-date/component/event-datetime-picker.js:72
+#: src/Meta/date-picker.js:122
 msgid "Date"
 msgstr "Datum"
 
-#: assets/js/meta/event-date/component/event-datetime-picker.js:73
-#: assets/js/meta/event-date/component/event-datetime-picker.js:98
+#: src/Meta/date-picker.js:124 src/Meta/date-picker.js:138
 msgid "dd.mm.yyyy"
 msgstr "dd.mm.yyyy"
 
-#: assets/js/meta/event-date/component/event-datetime-picker.js:80
-#: assets/js/meta/event-date/component/event-datetime-picker.js:105
-msgid "Select a Date"
-msgstr "Wähle ein Datum"
-
-#: assets/js/meta/event-date/component/event-datetime-picker.js:97
+#: src/Meta/date-picker.js:137
 msgid "End date"
 msgstr "Enddatum"
 
-#: assets/js/meta/event-date/component/event-datetime-picker.js:122
-msgid "Time"
-msgstr "Zeit"
+#: src/Meta/date-picker.js:148
+msgid "From"
+msgstr "Von"
 
-#: assets/js/meta/event-date/component/event-datetime-picker.js:123
-#: assets/js/meta/event-date/component/event-datetime-picker.js:132
-#, fuzzy
+#: src/Meta/date-picker.js:149
 msgid "hh:ii"
 msgstr "hh:ii"
 
-#: assets/js/meta/event-date/component/event-datetime-picker.js:157
-msgid "Reset"
-msgstr "Zurücksetzen"
-
-#: src/EventCategories.php:27
-#, fuzzy
-msgctxt "Taxonomy slug"
-msgid "event-categories"
-msgstr "Event-Kategorien"
-
-#: src/EventCategories.php:40
-msgctxt "taxonomy general name"
-msgid "Event Categories"
-msgstr "Veranstaltungskategorien"
-
-#: src/EventCategories.php:41
-msgctxt "taxonomy singular name"
-msgid "Event Category"
-msgstr "Veranstaltungskategorie"
-
-#: src/EventCategories.php:42
-msgid "Event Categories"
-msgstr "Veranstaltungskategorien"
-
-#: src/EventCategories.php:43
-msgid "All Event Categories"
-msgstr "Alle Veranstaltungskategorien"
-
-#: src/EventCategories.php:44
-msgid "Edit Event Category"
-msgstr "Veranstaltungskategorie bearbeiten"
-
-#: src/EventCategories.php:45
-msgid "View Event Category"
-msgstr "Veranstaltungskategorie ansehen"
-
-#: src/EventCategories.php:46
-msgid "Update Event Category"
-msgstr "Event-Kategorie aktualisieren"
-
-#: src/EventCategories.php:47
-msgid "Add New Event Category"
-msgstr "Neue Veranstaltungskategorie hinzufügen"
-
-#: src/EventCategories.php:48
-msgid "New Event Category Name"
-msgstr "Name der neuen Veranstaltungskategorie"
-
-#: src/EventCategories.php:49
-msgid "Parent Event Category"
-msgstr "Übergeordnete Kategorie"
-
-#: src/EventCategories.php:50
-msgid "Parent Event Category:"
-msgstr "Übergeordnere Veranstaltungskategorie:"
-
-#: src/EventCategories.php:51
-msgid "Search Event Categories"
-msgstr "Veranstaltungskategorien durchsuchen"
-
-#: src/EventCategories.php:52
-msgid "Popular Event Categories"
-msgstr "Beliebte Event-Kategorien"
-
-#: src/EventCategories.php:53
-msgid "Separate event categories with commas"
-msgstr "Trenne Veranstaltungskategorien mit Kommas"
-
-#: src/EventCategories.php:54
-#, fuzzy
-msgid "Add or remove tags event categories"
-msgstr "Hinzufügen oder Entfernen von Tags Ereigniskategorien"
-
-#: src/EventCategories.php:55
-msgid "Choose from the most used event categories"
-msgstr "Aus den am meisten verwendeten Kategorien wählen"
-
-#: src/EventCategories.php:56
-#, fuzzy
-msgid "No event categories found."
-msgstr "Keine Ereigniskategorien gefunden."
-
-#: src/EventCategories.php:57
-#, fuzzy
-msgid "Back to event categories"
-msgstr "Zurück zu den Veranstaltungskategorien"
-
-#: src/Events.php:51 src/Events.php:55
-msgctxt "Post Type Slug"
-msgid "events"
-msgstr "Veranstaltungen"
-
-#: src/Events.php:68 src/Events.php:89
+#: src/PostTypes/Events.php:41 src/PostTypes/Events.php:62
 msgctxt "post type general name"
 msgid "Events"
 msgstr "Veranstaltungen"
 
-#: src/Events.php:69
+#: src/PostTypes/Events.php:42
 msgctxt "post type singular name"
 msgid "Event"
 msgstr "Veranstaltung"
 
-#: src/Events.php:70
+#: src/PostTypes/Events.php:43
 msgctxt "Event"
 msgid "Add New"
 msgstr "Neu hinzufügen"
 
-#: src/Events.php:71
+#: src/PostTypes/Events.php:44
 msgid "Add New Event"
 msgstr "Neue Veranstaltung hinzufügen"
 
-#: src/Events.php:72
+#: src/PostTypes/Events.php:45
 msgid "Edit Event"
 msgstr "Veranstaltung bearbeiten"
 
-#: src/Events.php:73
+#: src/PostTypes/Events.php:46
 msgid "New Event"
 msgstr "Neues Event"
 
-#: src/Events.php:74
+#: src/PostTypes/Events.php:47
 msgid "View Event"
 msgstr "Veranstaltung anzeigen"
 
-#: src/Events.php:75
+#: src/PostTypes/Events.php:48
 msgid "View Events"
 msgstr "Veranstaltung anzeigen"
 
-#: src/Events.php:76
+#: src/PostTypes/Events.php:49
 msgid "Search Events"
 msgstr "Events durchsuchen"
 
-#: src/Events.php:77
+#: src/PostTypes/Events.php:50
 msgid "No Events found"
 msgstr "Keine Events gefunden"
 
-#: src/Events.php:78
+#: src/PostTypes/Events.php:51
 msgid "No Events found in Trash"
 msgstr "Keine Termine im Papierkorb gefunden"
 
-#: src/Events.php:79
+#: src/PostTypes/Events.php:52
 msgid "Parent Event"
 msgstr "Übergeordnete Veranstaltung"
 
-#: src/Events.php:80
+#: src/PostTypes/Events.php:53
 msgid "All Events"
 msgstr "Alle Veranstaltungen"
 
-#: src/Events.php:81
+#: src/PostTypes/Events.php:54
 msgid "Event Archives"
 msgstr "Event-Archive"
 
-#: src/Events.php:82
+#: src/PostTypes/Events.php:55
 msgid "Event Attributes"
 msgstr "Veranstaltungsattribute"
 
-#: src/Events.php:83
+#: src/PostTypes/Events.php:56
 msgid "Insert into event"
 msgstr "Zur Veranstaltung hinzufügen"
 
-#: src/Events.php:84
+#: src/PostTypes/Events.php:57
 msgid "Uploaded to this page"
 msgstr "Auf diese Seite hochgeladen"
 
-#: src/Events.php:85
+#: src/PostTypes/Events.php:58
 msgid "Event image"
 msgstr "Bild der Veranstaltung"
 
-#: src/Events.php:86
+#: src/PostTypes/Events.php:59
 msgid "Set Event image"
 msgstr "Eventbild festlegen"
 
-#: src/Events.php:87
-#, fuzzy
+#: src/PostTypes/Events.php:60
 msgid "Remove Event image"
-msgstr "Ereignisbild entfernen"
+msgstr "Veranstaltungsbild entfernen"
 
-#: src/Events.php:88
+#: src/PostTypes/Events.php:61
 msgid "Use as Event image"
 msgstr "Als Veranstaltungsbild verwenden"
 
-#: src/Events.php:109 src/Events.php:112
+#: src/PostTypes/Events.php:63 src/PostTypes/Events.php:64
+#: src/PostTypes/Events.php:65
+msgid "Events"
+msgstr "Veranstaltungen"
+
+#: src/PostTypes/Events.php:73 src/PostTypes/Events.php:76
 msgid "Event updated."
 msgstr "Event aktualisiert."
 
-#: src/Events.php:110
+#: src/PostTypes/Events.php:74
 msgid "Custom field updated."
 msgstr "Benutzerdefiniertes Feld aktualisiert."
 
-#: src/Events.php:111
+#: src/PostTypes/Events.php:75
 msgid "Custom field deleted."
 msgstr "Benutzerdefiniertes Feld gelöscht."
 
-#: src/Events.php:113
+#: src/PostTypes/Events.php:77
 #, php-format
 msgid "Event restored to revision from %s"
 msgstr "Termin von %s nach Revision wieder hergestellt"
 
-#: src/Events.php:114
+#: src/PostTypes/Events.php:78
 msgid "Event published."
 msgstr "Termin veröffentlicht."
 
-#: src/Events.php:115
+#: src/PostTypes/Events.php:79
 msgid "Event saved."
-msgstr "Termin gespeichert"
+msgstr "Veranstaltung gespeichert."
 
-#: src/Events.php:116
+#: src/PostTypes/Events.php:80
 msgid "Event submitted."
 msgstr "Veranstaltung übertragen."
 
-#: src/Events.php:117
+#: src/PostTypes/Events.php:81
 #, php-format
 msgid "Event scheduled for: <strong>%1$s</strong>."
 msgstr "Termin geplant für: <strong>%1$s</strong>."
 
-#: src/Events.php:117
+#: src/PostTypes/Events.php:81
 msgid "M j, Y @ G:i"
 msgstr "M j, Y @ G:i"
 
-#: src/Events.php:118
+#: src/PostTypes/Events.php:82
 msgid "Event draft updated."
 msgstr "Terminentwurf aktualisiert."
 
-#: src/Events.php:126
+#: src/PostTypes/Events.php:90
 msgid "View event"
 msgstr "Veranstaltung anzeigen"
 
-#: src/Events.php:132
+#: src/PostTypes/Events.php:96
 msgid "Preview event"
 msgstr "Eventvorschau"
 
-#: src/Meta/EventLocation.php:17
-msgid "Location"
-msgstr "Standort"
+#: src/Taxonomies/EventCategories.php:28
+msgctxt "Taxonomy slug"
+msgid "event-categories"
+msgstr "event-kategorien"
 
-#: views/single.php:29
+#: src/Taxonomies/EventCategories.php:40
+msgctxt "taxonomy general name"
+msgid "Event Categories"
+msgstr "Veranstaltungskategorien"
+
+#: src/Taxonomies/EventCategories.php:41
+msgctxt "taxonomy singular name"
+msgid "Event Category"
+msgstr "Veranstaltungskategorie"
+
+#: src/Taxonomies/EventCategories.php:42
+msgid "Event Categories"
+msgstr "Veranstaltungskategorien"
+
+#: src/Taxonomies/EventCategories.php:43
+msgid "All Event Categories"
+msgstr "Alle Veranstaltungskategorien"
+
+#: src/Taxonomies/EventCategories.php:44
+msgid "Edit Event Category"
+msgstr "Veranstaltungskategorie bearbeiten"
+
+#: src/Taxonomies/EventCategories.php:45
+msgid "View Event Category"
+msgstr "Veranstaltungskategorie ansehen"
+
+#: src/Taxonomies/EventCategories.php:46
+msgid "Update Event Category"
+msgstr "Event-Kategorie aktualisieren"
+
+#: src/Taxonomies/EventCategories.php:47
+msgid "Add New Event Category"
+msgstr "Neue Veranstaltungskategorie hinzufügen"
+
+#: src/Taxonomies/EventCategories.php:48
+msgid "New Event Category Name"
+msgstr "Name der neuen Veranstaltungskategorie"
+
+#: src/Taxonomies/EventCategories.php:49
+msgid "Parent Event Category"
+msgstr "Übergeordnete Kategorie"
+
+#: src/Taxonomies/EventCategories.php:50
+msgid "Parent Event Category:"
+msgstr "Übergeordnere Veranstaltungskategorie:"
+
+#: src/Taxonomies/EventCategories.php:51
+msgid "Search Event Categories"
+msgstr "Veranstaltungskategorien durchsuchen"
+
+#: src/Taxonomies/EventCategories.php:52
+msgid "Popular Event Categories"
+msgstr "Beliebte Event-Kategorien"
+
+#: src/Taxonomies/EventCategories.php:53
+msgid "Separate event categories with commas"
+msgstr "Trenne Veranstaltungskategorien mit Kommas"
+
+#: src/Taxonomies/EventCategories.php:54
+msgid "Add or remove tags event categories"
+msgstr "Hinzufügen oder Entfernen von Tags Veranstaltungskategorien"
+
+#: src/Taxonomies/EventCategories.php:55
+msgid "Choose from the most used event categories"
+msgstr "Aus den am meisten verwendeten Kategorien wählen"
+
+#: src/Taxonomies/EventCategories.php:56
+msgid "No event categories found."
+msgstr "Keine Veranstaltungskategorien gefunden."
+
+#: src/Taxonomies/EventCategories.php:57
+msgid "Back to event categories"
+msgstr "Zurück zu den Veranstaltungskategorien"
+
+#: views/single.php:22
 msgid "Read more"
 msgstr "Weiterlesen"
 
 #. Plugin Name of the plugin/theme
-#, fuzzy
 msgid "Custom Post Type Events"
-msgstr "Ereignisse vom Typ \"Benutzerdefinierte Beiträge\""
+msgstr "Veranstaltungen"
 
 #. Plugin URI of the plugin/theme
 #. Author URI of the plugin/theme
@@ -337,10 +532,31 @@ msgid "https://horttcore.de"
 msgstr "https://horttcore.de"
 
 #. Description of the plugin/theme
-#, fuzzy
 msgid "A custom post type for managing events"
-msgstr "Ein benutzerdefinierter Beitragstyp zum Verwalten von Ereignissen"
+msgstr "Ein benutzerdefinierter Beitragstyp zum Verwalten von Veranstaltungen"
 
 #. Author of the plugin/theme
 msgid "Ralf Hortt"
 msgstr "Ralf Hortt"
+
+#, fuzzy
+#~ msgid "Shows a custom event loop"
+#~ msgstr "Zeigt eine benutzerdefinierte Ereignisschleife an"
+
+#~ msgid "Query"
+#~ msgstr "Abfrage"
+
+#~ msgid "Loop"
+#~ msgstr "Schleife"
+
+#~ msgid "Select a Date"
+#~ msgstr "Wähle ein Datum"
+
+#~ msgid "Time"
+#~ msgstr "Zeit"
+
+#~ msgid "Reset"
+#~ msgstr "Zurücksetzen"
+
+#~ msgid "Location"
+#~ msgstr "Standort"

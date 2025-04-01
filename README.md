@@ -44,5 +44,10 @@ Translation ready
 
 ### Filters
 
-* `custom-post-type-events-loop-template` - Template file for the loop
-* `custom-post-type-events-single-template` - Template file for a single entry in the loop
+#### Template file for the loop
+
+`add_filter('custom-post-type-events-loop-template', fn () => __DIR__.'/views/block-events.php');`
+
+#### Template file for a single entry in the loop
+
+`add_filter('custom-post-type-events-single-template', fn () => __DIR__.'/views/block-event.php');`

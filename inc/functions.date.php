@@ -155,7 +155,7 @@ if (! function_exists('getEventDatetime')) {
 
         $output = getEventDate($postId, $format);
 
-        if (! eventIsAllDay($postId)) {
+        if (eventIsMultiDay($postId)) {
             $output .= apply_filters('event-date-time-seperator', ' | ', $postId, $event);
             $output .= getEventTime($postId, $format);
         }

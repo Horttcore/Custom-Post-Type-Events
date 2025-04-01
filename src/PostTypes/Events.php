@@ -4,18 +4,10 @@ namespace RalfHortt\CustomPostTypeEvents\PostTypes;
 
 use RalfHortt\CustomPostType\PostType;
 
-/**
- *  Custom Post Type Produts.
- */
 class Events extends PostType
 {
     protected string $slug = 'event';
 
-    /**
-     * Register post type.
-     *
-     * @return array Post type configuration
-     */
     public function getConfig(): array
     {
         return [
@@ -42,12 +34,7 @@ class Events extends PostType
             'rest_base' => _x('events', 'Post Type Slug', 'custom-post-type-events'),
         ];
     }
-    // END config
 
-    /**
-     * Labels.
-     *
-     **/
     public function getLabels(): array
     {
         return [
@@ -79,14 +66,6 @@ class Events extends PostType
         ];
     }
 
-    /**
-     * Update messages.
-     *
-     * @param  WP_Post  $post  Post object
-     * @param  string  $postType  Post type slug
-     * @param  WP_Post_Type  $postType  Post type slug
-     * @return array Update messages
-     **/
     public function getPostUpdateMessages(\WP_Post $post, string $postType, \WP_Post_Type $postTypeObjects): array
     {
         $messages = [
@@ -120,4 +99,4 @@ class Events extends PostType
 
         return $messages;
     }
-} // END class Events
+}

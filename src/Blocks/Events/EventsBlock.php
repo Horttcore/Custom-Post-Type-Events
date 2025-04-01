@@ -6,24 +6,27 @@ use RalfHortt\WPBlock\Block;
 
 class EventsBlock extends Block
 {
-    public string $name = 'custom-post-type-events/events';
+    protected string $name = 'custom-post-type-events/events';
 
     protected string $title = 'Events';
 
-    protected string $blockJson = './build/blocks/Events/block.json';
+    protected string $blockJson = __DIR__.'/../../../build/blocks/Events/block.json';
 
     public function render(array $atts, string $content): void
     {
         $defaults = wp_parse_args($atts, [
-            'post_type' => 'event',
-            'orderBy' => 'event-date',
-            'order' => 'asc',
-            'offset' => 0,
             'eventCategory' => [],
+            'numberOfItems' => 10,
+            'offset' => 0,
+            'order' => 'asc',
+            'orderBy' => 'event-date',
+            'post_type' => 'event',
+            'postIn' => [],
         ]);
 
         $attributes = array_filter([
             ...$defaults,
+            'paged' => $atts['page'] ?? 1,
             'posts_per_page' => $defaults['numberOfItems'],
             'order' => ! empty($defaults['postIn']) ? 'ASC' : $defaults['order'],
             'orderBy' => $this->getOrderBy($defaults),

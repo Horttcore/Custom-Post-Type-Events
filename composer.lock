@@ -127,16 +127,16 @@
         },
         {
             "name": "ralfhortt/wp-block",
-            "version": "1.1",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Horttcore/wp-block.git",
-                "reference": "36134019a8ffc164b113164c3d67f7d8dc789a92"
+                "reference": "87bde527d6cc3064a3ec7eb6f5f0e8198eef9b57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Horttcore/wp-block/zipball/36134019a8ffc164b113164c3d67f7d8dc789a92",
-                "reference": "36134019a8ffc164b113164c3d67f7d8dc789a92",
+                "url": "https://api.github.com/repos/Horttcore/wp-block/zipball/87bde527d6cc3064a3ec7eb6f5f0e8198eef9b57",
+                "reference": "87bde527d6cc3064a3ec7eb6f5f0e8198eef9b57",
                 "shasum": ""
             },
             "require": {
@@ -158,12 +158,12 @@
                     "email": "me@horttcore.de"
                 }
             ],
-            "description": "A composer wrapper for ServerSideRender blocks",
+            "description": "A composer wrapper for registering blocks",
             "support": {
                 "issues": "https://github.com/Horttcore/wp-block/issues",
-                "source": "https://github.com/Horttcore/wp-block/tree/master"
+                "source": "https://github.com/Horttcore/wp-block/tree/1.2.1"
             },
-            "time": "2020-05-25T09:48:00+00:00"
+            "time": "2024-11-09T22:10:34+00:00"
         },
         {
             "name": "ralfhortt/wp-custom-post-type",
