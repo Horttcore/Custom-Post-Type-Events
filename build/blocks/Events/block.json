@@ -5,9 +5,13 @@
   "title": "Events",
   "category": "widgets",
   "icon": "category",
-  "description": "List events",
+  "description": "Shows a custom events loop",
   "textdomain": "custom-post-type-events",
   "attributes": {
+    "page": {
+      "type": "string",
+      "default": "1"
+    },
     "postLayout": {
       "type": "string",
       "default": "list"
@@ -22,7 +26,7 @@
     },
     "orderBy": {
       "type": "string",
-      "default": "title"
+      "default": "date"
     },
     "order": {
       "type": "string",
@@ -49,5 +53,15 @@
       "default": []
     }
   },
-  "editorScript": "file:./index.js"
+  "supports": {
+    "anchor": true,
+    "align": true,
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "blockGap": true
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./index.css"
 }
