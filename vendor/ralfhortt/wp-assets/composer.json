@@ -13,10 +13,30 @@
             "RalfHortt\\Assets\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "RalfHortt\\Assets\\Tests\\": "tests/"
+        }
+    },
     "require": {
         "php": ">=8.2"
     },
     "require-dev": {
-        "phpstan/phpstan": "^1.12"
+        "brain/monkey": "^2.6",
+        "pestphp/pest": "^3.0",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "^2.0",
+        "szepeviktor/phpstan-wordpress": "^2.0"
+    },
+    "scripts": {
+        "lint": "phpstan analyse --memory-limit=512M",
+        "test": "pest"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        },
+        "sort-packages": true
     }
 }

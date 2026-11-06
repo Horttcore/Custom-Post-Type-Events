@@ -24,28 +24,22 @@ abstract class Block implements ServiceContract
     public function register(): void
     {
         $attrs = [];
-        if (! $this->hasBlockJson()) {
+        if (!$this->hasBlockJson()) {
             $attrs['attributes'] = $this->getAttributes();
             $attrs['title'] = $this->getTitle();
         }
-
-        add_action('init', function () use ($attrs) {
-            if (is_admin()) {
-                return;
-            }
-            \register_block_type(
-                $this->hasBlockJson() ? $this->getBlockJson() : $this->getName(),
-                array_merge([
-                    'render_callback' => [$this, 'callback'],
-                ], $attrs, $this->args()),
-            );
-        });
+        $block = \register_block_type(
+            $this->hasBlockJson() ? $this->getBlockJson() : $this->getName(),
+            array_merge([
+                'render_callback' => [$this, 'callback'],
+            ], $attrs, $this->args()),
+        );
     }
 
     /**
      * Has block json.
      */
-    protected function hasBlockJson(): string
+    protected function hasBlockJson(): bool
     {
         return isset($this->blockJson) && $this->blockJson;
     }
@@ -103,10 +97,12 @@ abstract class Block implements ServiceContract
         ob_start();
 
         \do_action($this->getName().'/before', $atts, $content);
-        echo \apply_filters($this->getName().'/render', $this->render($atts, $content), $atts, $content);
+        $this->render($atts, $content);
+        $output = ob_get_contents();
+        echo \apply_filters($this->getName().'/render', $output, $atts, $content);
         \do_action($this->getName().'/after', $atts, $content);
 
-        return ob_get_clean();
+        return ob_get_clean() ?: '';
     }
 
     /**

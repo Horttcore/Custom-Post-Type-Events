@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Login Script Component.
  *

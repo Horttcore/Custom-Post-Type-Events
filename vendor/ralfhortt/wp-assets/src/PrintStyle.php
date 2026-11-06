@@ -1,4 +1,5 @@
 <?php
+
 /**
  * PrintStyle component.
  *
@@ -15,8 +16,6 @@ class PrintStyle extends Style
 {
     /**
      * For which media is the stylesheet valid.
-     *
-     * @var string Media
      */
-    protected mixed $media = 'print';
+    protected string $media = 'print';
 }

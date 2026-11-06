@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Script component.
  *
@@ -21,14 +22,15 @@ class Script extends Asset
     /**
      * Class constructor.
      *
-     * @param string[] $dependencies Array of script dependencies
+     * @param list<string>                                                            $dependencies Array of script dependencies
+     * @param array{strategy?: string, in_footer?: bool, fetchpriority?: string}|bool $args         Script registration args
      */
     public function __construct(
         protected string $handle,
         protected string $source = '',
         protected array $dependencies = [],
-        protected mixed $version = null,
-        protected array $args = [],
+        protected string|bool|null $version = null,
+        protected array|bool $args = [],
     ) {
     }
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Style component.
  *
@@ -10,8 +11,6 @@
  */
 
 namespace RalfHortt\Assets;
-
-use Exception;
 
 class Style extends Asset
 {
@@ -25,16 +24,15 @@ class Style extends Asset
     /**
      * Class constructor.
      *
-     * @param string[] $dependencies Array of style dependencies
+     * @param list<string> $dependencies Array of style dependencies
      */
     public function __construct(
         protected string $handle,
         protected string $source = '',
         protected array $dependencies = [],
-        protected mixed $version = true,
+        protected string|bool|null $version = true,
         protected string $media = 'all'
-    )
-    {
+    ) {
     }
 
     /**
@@ -47,8 +45,6 @@ class Style extends Asset
 
     /**
      * Register style.
-     *
-     * @throws Exception
      */
     public function registerAsset(): void
     {

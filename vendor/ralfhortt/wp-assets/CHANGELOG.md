@@ -1,3 +1,12 @@
+# 3.1.0 - 2026-08-07
+
+- Improve multisite and multidomain URL detection for local assets
+- Resolve filesystem paths across scheme mismatches and domain-mapped hosts
+- Warn and return `null` instead of throwing when an asset path is unreadable
+- Add Pest test suite with Brain Monkey WordPress stubs
+- Add PHPStan linting with WordPress stubs (`composer lint`)
+- Add GitHub Actions CI for lint and tests
+
 # 3.0.0 - 2024-06-18
 
 - Add loading strategy for script assets
@@ -5,7 +14,7 @@
 # 2.2.2 - 2024-03-24
 
 -   Fix bug
--   
+
 # 2.2.1 - 2024-03-20
 
 -   Fix bug

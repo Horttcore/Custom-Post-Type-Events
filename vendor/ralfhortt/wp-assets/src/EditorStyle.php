@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Editor Style Component.
  *

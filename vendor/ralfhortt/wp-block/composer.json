@@ -1,19 +1,53 @@
 {
     "name": "ralfhortt/wp-block",
-    "description": "A composer wrapper for ServerSideRender blocks",
+    "description": "A composer wrapper for registering WordPress blocks.",
     "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "Ralf Hortt",
-            "email": "me@horttcore.de"
+            "email": "mail@ralfhortt.dev"
         }
     ],
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
     "autoload": {
         "psr-4": {
             "RalfHortt\\WPBlock\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "RalfHortt\\WPBlock\\Tests\\": "tests/"
+        }
+    },
     "require": {
         "ralfhortt/service-contracts": "^1.0"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.10",
+        "szepeviktor/phpstan-wordpress": "^1.3",
+        "pestphp/pest": "^4.1",
+        "brain/monkey": "^2.6",
+        "mockery/mockery": "^1.6"
+    },
+    "scripts": {
+        "phpstan": "phpstan analyse --memory-limit=512M",
+        "phpstan-baseline": "phpstan analyse --generate-baseline --memory-limit=512M",
+        "test": "pest --no-coverage",
+        "test:coverage": "pest --coverage",
+        "test:watch": "pest --watch",
+        "ci": [
+            "@composer validate --strict",
+            "@phpstan",
+            "@test"
+        ],
+        "ci:coverage": [
+            "@composer validate --strict",
+            "@phpstan",
+            "@test:coverage"
+        ]
     }
 }
