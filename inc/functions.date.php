@@ -1,62 +1,151 @@
 <?php
 
-if (! function_exists('getEventInfo')) {
+use RalfHortt\CustomPostTypeEvents\Context\EventLoopContext;
+use RalfHortt\CustomPostTypeEvents\Support\EventDateRange;
+
+if (! function_exists('getEventOccurrences')) {
     /**
-     * Get event location
+     * Get all occurrences for an event.
      *
      * @param  int  $postId  Post ID
-     * @param  string  $field  Location field
-     * @return str/array Location
-     *
-     * @author Ralf Hortt
+     * @return array<int, array{id: string, range: string}>
      **/
-    function getEventInfo($postId = false)
+    function getEventOccurrences(int $postId): array
     {
-        $postId = ($postId !== false) ? $postId : get_the_ID();
+        $occurrences = get_post_meta($postId, 'eventOccurrences', true);
 
-        $start = get_post_meta($postId, 'eventStart', true);
-        $end = get_post_meta($postId, 'eventEnd', true);
+        return is_array($occurrences) ? $occurrences : [];
+    }
+}
+
+if (! function_exists('eventInfoFromRange')) {
+    /**
+     * @return array{
+     *     dateTimeStart: string,
+     *     dateTimeEnd: string,
+     *     start: int,
+     *     end: int,
+     *     isMultiDay: bool,
+     *     isAllDay: bool
+     * }
+     **/
+    function eventInfoFromRange(string $range, int $postId): array
+    {
+        $parsed = EventDateRange::parse($range);
+
+        if ($parsed === null) {
+            return [
+                'isMultiDay' => false,
+                'isAllDay' => false,
+                'start' => 0,
+                'end' => 0,
+                'dateTimeStart' => '',
+                'dateTimeEnd' => '',
+            ];
+        }
 
         $args = [
-            'dateTimeStart' => $start,
-            'dateTimeEnd' => $end,
+            'dateTimeStart' => $parsed['start'],
+            'dateTimeEnd' => $parsed['end'],
+            'start' => $parsed['startTs'],
+            'end' => $parsed['endTs'],
+            'isMultiDay' => EventDateRange::isMultiDay($parsed),
+            'isAllDay' => EventDateRange::isAllDay($parsed),
         ];
 
-        if ($start) {
-            $args['start'] = (int) strtotime($start);
-        }
+        $explicitAllDay = get_post_meta($postId, 'eventIsAllDay', true);
 
-        if ($end) {
-            $args['end'] = (int) strtotime($end);
-        }
-
-        if (isset($args['start']) && isset($args['end']) && date('d.m.Y', $args['start']) != date('d.m.Y', $args['end'])) {
-            $args['isMultiDay'] = true;
-        }
-
-        if (isset($args['start']) && isset($args['end']) && date('H:i:s', $args['start']) == '00:00:00' && date('H:i:s', $args['end']) == '23:59:59') {
+        if ($explicitAllDay) {
             $args['isAllDay'] = true;
         }
 
-        return wp_parse_args($args, [
-            'isMultiDay' => false,
-            'isAllDay' => false,
-            'start' => '',
-            'end' => '',
-            'dateTimeStart' => '',
-            'dateTimeEnd' => '',
-        ]);
+        return $args;
+    }
+}
+
+if (! function_exists('resolveEventRange')) {
+    function resolveEventRange(int $postId, ?string $occurrenceKey = null): string
+    {
+        $context = EventLoopContext::get();
+
+        if (
+            $context
+            && (int) $context['post_id'] === $postId
+            && ($occurrenceKey === null || $context['occurrence_key'] === $occurrenceKey)
+        ) {
+            return (string) $context['range'];
+        }
+
+        if ($occurrenceKey !== null) {
+            foreach (getEventOccurrences($postId) as $occurrence) {
+                if (($occurrence['id'] ?? null) === $occurrenceKey) {
+                    return (string) ($occurrence['range'] ?? '');
+                }
+            }
+        }
+
+        $primaryRange = (string) get_post_meta($postId, 'eventPrimaryRange', true);
+
+        if ($primaryRange !== '') {
+            return $primaryRange;
+        }
+
+        $start = (string) get_post_meta($postId, 'eventStart', true);
+        $end = (string) get_post_meta($postId, 'eventEnd', true);
+
+        if ($start !== '' && $end !== '') {
+            return EventDateRange::format($start, $end);
+        }
+
+        return '';
+    }
+}
+
+if (! function_exists('getEventInfo')) {
+    /**
+     * Get event information
+     *
+     * @param  int|false  $postId  Post ID
+     * @param  string|null  $occurrenceKey  Occurrence key
+     * @return array{
+     *     dateTimeStart: string,
+     *     dateTimeEnd: string,
+     *     start: int,
+     *     end: int,
+     *     isMultiDay: bool,
+     *     isAllDay: bool
+     * } Event information array
+     *
+     * @author Ralf Hortt
+     **/
+    function getEventInfo(int|false $postId = false, ?string $occurrenceKey = null): array
+    {
+        $postId = ($postId !== false) ? $postId : get_the_ID();
+        $range = resolveEventRange($postId, $occurrenceKey);
+
+        if ($range === '') {
+            return [
+                'isMultiDay' => false,
+                'isAllDay' => false,
+                'start' => 0,
+                'end' => 0,
+                'dateTimeStart' => '',
+                'dateTimeEnd' => '',
+            ];
+        }
+
+        return eventInfoFromRange($range, $postId);
     }
 }
 
 if (! function_exists('hasEventDate')) {
     /**
-     * Get event date time string
+     * Check if event has a date
      *
-     * @param  int  $postId  Post ID
-     * @return bool Formatted date time string
+     * @param  int|false  $postId  Post ID
+     * @return bool Whether event has a date
      **/
-    function hasEventDate($postId = false)
+    function hasEventDate(int|false $postId = false): bool
     {
         $event = getEventInfo($postId);
 
@@ -70,14 +159,15 @@ if (! function_exists('hasEventDate')) {
 
 if (! function_exists('getEventDate')) {
     /**
-     * Get event date time string
+     * Get event date string
      *
-     * @param  int  $postId  Post ID
-     * @param  string  $format  Date format
-     * @return string Formatted date time string
+     * @param  int|false  $postId  Post ID
+     * @param  string|false  $format  Date format
+     * @return string Formatted date string
      **/
-    function getEventDate($postId = false, $format = false)
+    function getEventDate(int|false $postId = false, string|false $format = false): string
     {
+        $postId = ($postId !== false) ? $postId : get_the_ID();
         $format = ($format !== false) ? $format : get_option('date_format');
         $event = getEventInfo($postId);
 
@@ -88,7 +178,7 @@ if (! function_exists('getEventDate')) {
         $output = date_i18n($format, $event['start']);
 
         if (eventIsMultiDay($postId)) {
-            $output .= apply_filters('event-date-seperator', ' - ', $postId, $event);
+            $output .= apply_filters('event-date-separator', ' - ', $postId, $event);
             $output .= date_i18n($format, $event['end']);
         }
 
@@ -98,25 +188,18 @@ if (! function_exists('getEventDate')) {
 
 if (! function_exists('getEventTime')) {
     /**
-     * Get event date time string
+     * Get event time string
      *
      * @param  int  $postId  Post ID
-     * @param  string  $format  Date format
-     * @return string Formatted date time string
+     * @param  string  $format  Time format
+     * @return string Formatted time string
      **/
-    function getEventTime($postId = false, $format = 'H:i\h')
+    function getEventTime(int $postId = 0, string $format = 'H:i\h'): string
     {
-        $format = ($format !== false) ? $format : get_option('date_format');
+        $postId = $postId ? $postId : get_the_ID();
         $event = getEventInfo($postId);
 
-        if (! $event['start']) {
-            return '';
-        }
-
-        if (
-            date_i18n('H:i:s', $event['start']) == '00:00:00' &&
-            date_i18n('H:i:s', $event['end']) == '23:59:59'
-        ) {
+        if (! $event['start'] || $event['isAllDay']) {
             return '';
         }
 
@@ -124,8 +207,9 @@ if (! function_exists('getEventTime')) {
             apply_filters('event-time-format', $format, $postId, $event),
             $event['start']
         );
-        if (! eventIsAllDay($postId) && date_i18n('H:i:s', $event['end']) != '23:59:59' && date_i18n('H:i:s', $event['end']) != '00:00:00') {
-            $output .= apply_filters('event-time-seperator', ' - ', $postId, $event);
+
+        if (date_i18n('H:i:s', $event['end']) != '23:59:59' && date_i18n('H:i:s', $event['end']) != '00:00:00') {
+            $output .= apply_filters('event-time-separator', ' - ', $postId, $event);
             $output .= date_i18n(
                 apply_filters('event-time-format', $format, $postId, $event),
                 $event['end']
@@ -141,12 +225,13 @@ if (! function_exists('getEventDatetime')) {
      * Get event date time string
      *
      * @param  int  $postId  Post ID
-     * @param  string  $format  Date format
+     * @param  string|null  $format  Date format
      * @return string Formatted date time string
      **/
-    function getEventDatetime($postId = false, $format = false)
+    function getEventDatetime(int $postId = 0, ?string $format = null): string
     {
-        $format = ($format !== false) ? $format : get_option('date_format');
+        $postId = $postId ? $postId : get_the_ID();
+        $format = $format ?? get_option('date_format');
         $event = getEventInfo($postId);
 
         if (! $event['start']) {
@@ -154,10 +239,11 @@ if (! function_exists('getEventDatetime')) {
         }
 
         $output = getEventDate($postId, $format);
+        $time = getEventTime($postId);
 
-        if (eventIsMultiDay($postId)) {
-            $output .= apply_filters('event-date-time-seperator', ' | ', $postId, $event);
-            $output .= getEventTime($postId, $format);
+        if ($time) {
+            $output .= apply_filters('event-date-time-separator', ' | ', $postId, $event);
+            $output .= $time;
         }
 
         return $output;
@@ -166,15 +252,16 @@ if (! function_exists('getEventDatetime')) {
 
 if (! function_exists('eventIsAllDay')) {
     /**
-     * Conditional if event time is set
+     * Check if event is all day
      *
-     * @param  int  $postId  Post ID
-     * @return bool
+     * @param  int|false  $postId  Post ID
+     * @return bool Whether event is all day
      *
      * @author Ralf Hortt
      **/
-    function eventIsAllDay($postId)
+    function eventIsAllDay(int|false $postId = false): bool
     {
+        $postId = ($postId !== false) ? $postId : get_the_ID();
         $event = getEventInfo($postId);
 
         return $event['isAllDay'];
@@ -183,15 +270,16 @@ if (! function_exists('eventIsAllDay')) {
 
 if (! function_exists('eventIsMultiDay')) {
     /**
-     * Conditional if event time is set
+     * Check if event spans multiple days
      *
-     * @param  int  $postId  Post ID
-     * @return bool
+     * @param  int|false  $postId  Post ID
+     * @return bool Whether event is multi-day
      *
      * @author Ralf Hortt
      **/
-    function eventIsMultiDay($postId)
+    function eventIsMultiDay(int|false $postId = false): bool
     {
+        $postId = ($postId !== false) ? $postId : get_the_ID();
         $event = getEventInfo($postId);
 
         return $event['isMultiDay'];
@@ -200,9 +288,10 @@ if (! function_exists('eventIsMultiDay')) {
 
 if (! function_exists('isEventInPast')) {
     /**
-     * Conditional if event time is set
+     * Check whether an event has ended.
      *
      * @param  int  $postId  Post ID
+     * @return bool Whether the event is in the past
      *
      * @author Ralf Hortt
      **/
@@ -211,6 +300,10 @@ if (! function_exists('isEventInPast')) {
         $postId = $postId ? $postId : get_the_ID();
         $event = getEventInfo($postId);
 
-        return $event['start'] < time();
+        if (! $event['end']) {
+            return $event['start'] < time();
+        }
+
+        return $event['end'] < time();
     }
 }

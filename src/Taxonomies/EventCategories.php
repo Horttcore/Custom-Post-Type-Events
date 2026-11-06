@@ -5,7 +5,7 @@ namespace RalfHortt\CustomPostTypeEvents\Taxonomies;
 use RalfHortt\CustomTaxonomy\Taxonomy;
 
 /**
- *  Custom Post Type Produts.
+ * Event categories taxonomy.
  */
 class EventCategories extends Taxonomy
 {
@@ -51,10 +51,10 @@ class EventCategories extends Taxonomy
             'search_items' => __('Search Event Categories', 'custom-post-type-events'),
             'popular_items' => __('Popular Event Categories', 'custom-post-type-events'),
             'separate_items_with_commas' => __('Separate event categories with commas', 'custom-post-type-events'),
-            'add_or_remove_items' => __('Add or remove tags event categories', 'custom-post-type-events'),
+            'add_or_remove_items' => __('Add or remove event categories', 'custom-post-type-events'),
             'choose_from_most_used' => __('Choose from the most used event categories', 'custom-post-type-events'),
             'not_found' => __('No event categories found.', 'custom-post-type-events'),
             'back_to_items' => __('Back to event categories', 'custom-post-type-events'),
         ];
     }
-} // END class Events
+}

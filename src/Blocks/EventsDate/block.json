@@ -1,6 +1,6 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 2,
+    "apiVersion": 3,
     "name": "custom-post-type-events/events-date",
     "title": "Events Date",
     "category": "widgets",
@@ -11,8 +11,36 @@
         "format": {
             "type": "string",
             "default": ""
+        },
+        "timeSeparator": {
+            "type": "string",
+            "default": " | "
+        },
+        "showTime": {
+            "type": "boolean",
+            "default": true
+        },
+        "showEndDate": {
+            "type": "boolean",
+            "default": true
+        },
+        "oneLineRange": {
+            "type": "boolean",
+            "default": false
+        },
+        "dateRangeSeparator": {
+            "type": "string",
+            "default": "\u2013"
+        },
+        "timeFormat": {
+            "type": "string",
+            "default": "H:i"
         }
     },
+    "usesContext": [
+        "postId",
+        "postType"
+    ],
     "supports": {
         "color": {
             "background": true,
@@ -25,5 +53,6 @@
         }
     },
     "editorScript": "file:./index.js",
-    "style": "file:./index.css"
+    "style": "file:./index.css",
+    "render": "file:./render.php"
 }

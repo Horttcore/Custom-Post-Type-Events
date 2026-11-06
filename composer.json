@@ -10,6 +10,22 @@
         }
     ],
     "minimum-stability": "stable",
+    "require": {
+        "php": ">=8.2",
+        "ralfhortt/wp-custom-post-type": "2.0.0",
+        "ralfhortt/wp-custom-taxonomy": "2.0.1",
+        "ralfhortt/wp-plugin": "2.0.1",
+        "ralfhortt/wp-meta-box": "3.0.0",
+        "ralfhortt/translator-service": "^1.0",
+        "ralfhortt/wp-assets": "^3",
+        "ralfhortt/wp-block": "^3.2",
+        "laravel/pint": "^1.25"
+    },
+    "require-dev": {
+        "pestphp/pest": "^2.0",
+        "brain/monkey": "^2.6",
+        "mockery/mockery": "^1.6"
+    },
     "autoload": {
         "psr-4": {
             "RalfHortt\\CustomPostTypeEvents\\": "src/"
@@ -20,13 +36,17 @@
             "inc/functions.navigation.php"
         ]
     },
-    "require": {
-        "ralfhortt/wp-custom-post-type": "2.0.0",
-        "ralfhortt/wp-custom-taxonomy": "2.0.1",
-        "ralfhortt/wp-plugin": "2.0.1",
-        "ralfhortt/wp-meta-box": "3.0.0",
-        "ralfhortt/translator-service": "^1.0",
-        "ralfhortt/wp-assets": "^3",
-        "ralfhortt/wp-block": "^1.1"
+    "autoload-dev": {
+        "psr-4": {
+            "RalfHortt\\CustomPostTypeEvents\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "test": "pest"
     }
 }

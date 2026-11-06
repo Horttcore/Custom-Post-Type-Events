@@ -12,6 +12,10 @@ A custom post type to manage events
 
 * eventStart
 * eventEnd
+* eventOccurrences (array of `{ id, range }`)
+* eventPrimaryRange
+* eventLastEnd
+* eventIsAllDay (boolean)
 
 ## Template tags
 
@@ -38,16 +42,20 @@ A custom post type to manage events
 
 Translation ready
 
+## Blocks
+
+* **Events Date** (`custom-post-type-events/events-date`) — display formatted event date/time in the editor.
+
+For event lists, use the **Query Loop** block with post type **event** (sorting by event date is applied when `orderby` is left at the default for that query).
+
 ## Hooks
 
 ### Actions
 
 ### Filters
 
-#### Template file for the loop
+#### Event date/time output
 
-`add_filter('custom-post-type-events-loop-template', fn () => __DIR__.'/views/block-events.php');`
-
-#### Template file for a single entry in the loop
-
-`add_filter('custom-post-type-events-single-template', fn () => __DIR__.'/views/block-event.php');`
+* `event-date-separator` — between start and end dates in `getEventDate()` (multi-day)
+* `event-time-separator` — between start and end times in `getEventTime()`
+* `event-date-time-separator` — between date and time in `getEventDatetime()`

@@ -8,6 +8,55 @@ class Events extends PostType
 {
     protected string $slug = 'event';
 
+    /**
+     * Register hooks.
+     *
+     * @return void
+     **/
+    public function register(): void
+    {
+        parent::register();
+        \add_filter('query_vars', [$this, 'registerQueryVars']);
+        \add_action('init', [$this, 'addCustomRewriteRules']);
+    }
+
+    /**
+     * Register query vars.
+     *
+     * @param array $vars Query vars
+     * @return array
+     **/
+    public function registerQueryVars(array $vars): array
+    {
+        $vars[] = 'showPastEvents';
+
+        return $vars;
+    }
+
+    /**
+     * Add custom rewrite rules for /events/archive/.
+     *
+     * @return void
+     */
+    public function addCustomRewriteRules(): void
+    {
+        $slug = _x('events', 'Post Type Slug', 'custom-post-type-events');
+        $archive = _x('archive', 'Archive slug', 'custom-post-type-events');
+        $paged = _x('page', 'Pagination slug', 'custom-post-type-events');
+
+        \add_rewrite_rule(
+            '^' . $slug . '/' . $archive . '/' . $paged . '/([0-9]+)/?$',
+            'index.php?post_type=event&showPastEvents=1&paged=$matches[1]',
+            'top'
+        );
+
+        \add_rewrite_rule(
+            '^' . $slug . '/' . $archive . '/?$',
+            'index.php?post_type=event&showPastEvents=1',
+            'top'
+        );
+    }
+
     public function getConfig(): array
     {
         return [
@@ -24,6 +73,7 @@ class Events extends PostType
                 'thumbnail',
                 'custom-fields',
                 'revisions',
+                'excerpt'
             ],
             'has_archive' => true,
             'rewrite' => [
@@ -71,8 +121,8 @@ class Events extends PostType
         $messages = [
             0 => '', // Unused. Messages start at index 1.
             1 => __('Event updated.', 'custom-post-type-events'),
-            2 => __('Custom field updated.'),
-            3 => __('Custom field deleted.'),
+            2 => __('Custom field updated.', 'custom-post-type-events'),
+            3 => __('Custom field deleted.', 'custom-post-type-events'),
             4 => __('Event updated.', 'custom-post-type-events'),
             5 => isset($_GET['revision']) ? sprintf(__('Event restored to revision from %s', 'custom-post-type-events'), wp_post_revision_title((int) $_GET['revision'], false)) : false,
             6 => __('Event published.', 'custom-post-type-events'),

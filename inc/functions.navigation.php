@@ -2,11 +2,10 @@
 
 if (! function_exists('getPreviousEvent')) {
     /**
-     * Get event location
+     * Get the previous event by start date.
      *
      * @param  int  $postId  Post ID
-     * @param  string  $field  Location field
-     * @return str/array Location
+     * @return WP_Post|null Previous event post
      *
      * @author Ralf Hortt
      **/
@@ -20,9 +19,10 @@ if (! function_exists('getPreviousEvent')) {
 
         $posts = get_posts([
             'post_type' => 'event',
-            'orderBy' => 'event-date',
+            'post__not_in' => [$postId],
+            'orderby' => 'event-date',
             'order' => 'DESC',
-            'showposts' => 1,
+            'posts_per_page' => 1,
             'meta_query' => [
                 [
                     'key' => 'eventStart',
@@ -43,26 +43,27 @@ if (! function_exists('getPreviousEvent')) {
 
 if (! function_exists('getNextEvent')) {
     /**
-     * Get event location
+     * Get the next event by start date.
      *
      * @param  int  $postId  Post ID
-     * @param  string  $field  Location field
-     * @return str/array Location
+     * @return WP_Post|null Next event post
      *
      * @author Ralf Hortt
      **/
-    function getNextEvent($postId): ?WP_Post
+    function getNextEvent(int $postId): ?WP_Post
     {
         $event = getEventInfo($postId);
+
         if (! $event['dateTimeStart']) {
             return null;
         }
 
         $posts = get_posts([
             'post_type' => 'event',
-            'orderBy' => 'event-date',
+            'post__not_in' => [$postId],
+            'orderby' => 'event-date',
             'order' => 'ASC',
-            'showposts' => 1,
+            'posts_per_page' => 1,
             'meta_query' => [
                 [
                     'key' => 'eventStart',

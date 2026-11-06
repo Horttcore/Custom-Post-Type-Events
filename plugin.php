@@ -15,49 +15,45 @@ namespace RalfHortt\CustomPostTypeEvents;
 
 use RalfHortt\Assets\EditorScript;
 use RalfHortt\Assets\EditorStyle;
-use RalfHortt\Assets\Style;
-use RalfHortt\CustomPostTypeEvents\Blocks\Events\EventsBlock;
-use RalfHortt\CustomPostTypeEvents\Blocks\EventsDate\EventsDateBlock;
-use RalfHortt\CustomPostTypeEvents\Meta\EventArchive;
 use RalfHortt\CustomPostTypeEvents\Meta\EventDate;
 use RalfHortt\CustomPostTypeEvents\PostTypes\Events;
 use RalfHortt\CustomPostTypeEvents\Taxonomies\EventCategories;
 use RalfHortt\Plugin\PluginFactory;
-use RalfHortt\TranslatorService\Translator;
+use RalfHortt\WPBlock\BlockManifest;
 
 // ------------------------------------------------------------------------------
 // Prevent direct file access
 // ------------------------------------------------------------------------------
-if (! defined('WPINC')) {
+if (!defined('WPINC')) {
     exit;
 }
 
 // ------------------------------------------------------------------------------
 // Autoloader
 // ------------------------------------------------------------------------------
-$autoloader = dirname(__FILE__).'/vendor/autoload.php';
+$autoloader = dirname(__FILE__) . '/vendor/autoload.php';
 
 if (is_readable($autoloader)) {
     require_once $autoloader;
 }
 
 // ------------------------------------------------------------------------------
+// Activation
+// ------------------------------------------------------------------------------
+register_activation_hook(__FILE__, static function (): void {
+    flush_rewrite_rules();
+});
+
+// ------------------------------------------------------------------------------
 // Bootstrap
 // ------------------------------------------------------------------------------
-$eventsBlockAssets = require dirname(__FILE__).'/build/blocks/Events/index.asset.php';
-$eventsSidebarAssets = require dirname(__FILE__).'/build/meta/index.asset.php';
+$eventsSidebarAssets = require dirname(__FILE__) . '/build/meta/index.asset.php';
 
 PluginFactory::create()
-    ->addService(Translator::class, 'custom-post-type-events', dirname(plugin_basename(__FILE__)).'/languages/')
     ->addService(Events::class)
     ->addService(EventCategories::class)
-    ->addService(EventArchive::class)
     ->addService(EventDate::class)
-    ->addService(EventsBlock::class)
-    ->addService(EventsDateBlock::class)
-    ->addService(EditorScript::class, 'events-block', plugins_url('/build/Blocks/Events/index.js', __FILE__), $eventsBlockAssets['dependencies'], $eventsBlockAssets['version'])
     ->addService(EditorScript::class, 'events-sidebar', plugins_url('/build/meta/index.js', __FILE__), $eventsSidebarAssets['dependencies'], $eventsSidebarAssets['version'])
     ->addService(EditorStyle::class, 'events-sidebar', plugins_url('/build/meta/index.css', __FILE__), [], $eventsSidebarAssets['version'])
-    ->addService(Style::class, 'events-style', plugins_url('/build/blocks/Events/index.css', __FILE__), [], $eventsSidebarAssets['version'])
-    ->addService(EditorStyle::class, 'events-style')
+    ->addService(BlockManifest::class, __DIR__ . '/build/blocks/blocks-manifest.php')
     ->boot();

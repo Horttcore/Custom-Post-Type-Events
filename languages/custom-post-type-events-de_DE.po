@@ -503,8 +503,8 @@ msgid "Separate event categories with commas"
 msgstr "Trenne Veranstaltungskategorien mit Kommas"
 
 #: src/Taxonomies/EventCategories.php:54
-msgid "Add or remove tags event categories"
-msgstr "Hinzufügen oder Entfernen von Tags Veranstaltungskategorien"
+msgid "Add or remove event categories"
+msgstr "Veranstaltungskategorien hinzufügen oder entfernen"
 
 #: src/Taxonomies/EventCategories.php:55
 msgid "Choose from the most used event categories"
@@ -517,6 +517,24 @@ msgstr "Keine Veranstaltungskategorien gefunden."
 #: src/Taxonomies/EventCategories.php:57
 msgid "Back to event categories"
 msgstr "Zurück zu den Veranstaltungskategorien"
+
+#: src/Blocks/EventsDate/render.php:58
+msgctxt "Line break between start and end in multi-day range (lowercase)"
+msgid "to"
+msgstr "bis"
+
+#: src/Blocks/EventsDate/edit.js
+msgid "Date range separator"
+msgstr "Datumsbereichstrennzeichen"
+
+#: src/Blocks/EventsDate/edit.js
+msgid "Separator between start and end date (one-line range) or between start date and end date (two-line range). Use an en dash (–) or your preferred character."
+msgstr "Trenner zwischen Start- und Enddatum (einzeilig) oder zwischen Start- und Enddatum (zweizeilig). Standard ist ein Gedankenstrich (–)."
+
+#: src/Blocks/EventsDate/edit.js
+msgctxt "Line break between start and end in multi-day range (lowercase)"
+msgid "to"
+msgstr "bis"
 
 #: views/single.php:22
 msgid "Read more"

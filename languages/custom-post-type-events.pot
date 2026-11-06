@@ -155,8 +155,8 @@ msgstr ""
 msgid "Separate event categories with commas"
 msgstr ""
 
-#: src/EventCategories.php:54
-msgid "Add or remove tags event categories"
+#: src/Taxonomies/EventCategories.php:54
+msgid "Add or remove event categories"
 msgstr ""
 
 #: src/EventCategories.php:55
@@ -267,15 +267,15 @@ msgstr ""
 msgid "Event updated."
 msgstr ""
 
-#: src/Events.php:110
+#: src/PostTypes/Events.php:124
 msgid "Custom field updated."
 msgstr ""
 
-#: src/Events.php:111
+#: src/PostTypes/Events.php:125
 msgid "Custom field deleted."
 msgstr ""
 
-#: src/Events.php:113
+#: src/PostTypes/Events.php:127
 #, php-format
 msgid "Event restored to revision from %s"
 msgstr ""
@@ -319,6 +319,24 @@ msgstr ""
 
 #: views/single.php:29
 msgid "Read more"
+msgstr ""
+
+#: src/Blocks/EventsDate/render.php
+msgctxt "Line break between start and end in multi-day range (lowercase)"
+msgid "to"
+msgstr ""
+
+#: src/Blocks/EventsDate/edit.js
+msgid "Date range separator"
+msgstr ""
+
+#: src/Blocks/EventsDate/edit.js
+msgid "Separator between start and end date (one-line range) or between start date and end date (two-line range). Use an en dash (–) or your preferred character."
+msgstr ""
+
+#: src/Blocks/EventsDate/edit.js
+msgctxt "Line break between start and end in multi-day range (lowercase)"
+msgid "to"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
