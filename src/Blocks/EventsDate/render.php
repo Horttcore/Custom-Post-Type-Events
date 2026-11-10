@@ -13,7 +13,7 @@ $postID = $attributes['postId'] ?? $block->context['postId'] ?? get_the_ID();
 ?>
 
 <?php
-$format = $attributes['format'] ?? get_option('date_format');
+$format = ! empty($attributes['format']) ? (string) $attributes['format'] : get_option('date_format');
 $showTime = $attributes['showTime'] ?? true;
 $showEndDate = $attributes['showEndDate'] ?? true;
 $oneLineRange = $attributes['oneLineRange'] ?? false;
